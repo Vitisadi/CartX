@@ -35,7 +35,7 @@ jobs:
         working-directory: ./where2shop-app/backend
 
       - name: Build (Backend)
-        run: npm run build
+        run: npm start
         working-directory: ./where2shop-app/backend
 
         env:
