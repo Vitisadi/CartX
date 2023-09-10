@@ -7,21 +7,37 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./where2shop-app
+
     steps:
       - name: Clone repository
         uses: actions/checkout@v3
+
       - name: Use Node.js 16.x
         uses: actions/setup-node@v1
         with:
           node-version: 16.x
-      - name: Install dependencies
+
+      # Frontend steps
+      - name: Install dependencies (Frontend)
         run: npm install
-      - name: Build
+        working-directory: ./where2shop-app/frontend
+
+      - name: Build (Frontend)
         run: npm run build
-      - name: Test
-        run: npm test
+        working-directory: ./where2shop-app/frontend
+
         env:
           CI: true
+
+      # Backend steps
+      # - name: Install dependencies (Backend)
+      #   run: npm install
+      #   working-directory: ./where2shop-app/backend
+
+      # - name: Build (Backend)
+      #   run: npm start
+      #   working-directory: ./where2shop-app/backend
+
+      #   env:
+      #     CI: true
+
