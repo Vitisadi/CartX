@@ -7,6 +7,7 @@ React / JavaScript project aimed at finding the cheapest products near you. The 
 - `npm start`
 
 In a new terminal... with first still running
+
 2. Start backend
 - `cd where2shop-app/backend`
 - `npm start`
