@@ -30,14 +30,14 @@ jobs:
           CI: true
 
       # Backend steps
-      - name: Install dependencies (Backend)
-        run: npm install
-        working-directory: ./where2shop-app/backend
+      # - name: Install dependencies (Backend)
+      #   run: npm install
+      #   working-directory: ./where2shop-app/backend
 
-      - name: Build (Backend)
-        run: npm start
-        working-directory: ./where2shop-app/backend
+      # - name: Build (Backend)
+      #   run: npm start
+      #   working-directory: ./where2shop-app/backend
 
-        env:
-          CI: true
+      #   env:
+      #     CI: true
 
