@@ -20,11 +20,11 @@ jobs:
       # Frontend steps
       - name: Install dependencies (Frontend)
         run: npm install
-        working-directory: ./where2shop-app/frontend
+        working-directory: ./frontend
 
       - name: Build (Frontend)
         run: npm run build
-        working-directory: ./where2shop-app/frontend
+        working-directory: ./frontend
 
         env:
           CI: true
@@ -32,11 +32,11 @@ jobs:
       # Backend steps
       # - name: Install dependencies (Backend)
       #   run: npm install
-      #   working-directory: ./where2shop-app/backend
+      #   working-directory: ./backend
 
       # - name: Build (Backend)
       #   run: npm start
-      #   working-directory: ./where2shop-app/backend
+      #   working-directory: ./backend
 
       #   env:
       #     CI: true
