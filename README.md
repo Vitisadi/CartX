@@ -18,4 +18,4 @@ Add logo inside src/frontend/assets
 
 
 control + shift + p
-Dev Containers: rebuild without cache
+Dev Containers: rebuild without cache.
