@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.title {
+  font-family: Arial, sans-serif; /* Change the font family as needed */
+  font-size: 36px; /* Adjust the font size as needed */
+  color: #000000; /* Change the color to your preferred brand color */
+  text-transform: uppercase; /* Convert text to uppercase if desired */
+  letter-spacing: 2px; /* Adjust letter spacing for your preference */
+  font-weight: bold; /* Adjust font weight as needed */
+  text-align: center; /* Center the text if necessary */
+}
+
+.names {
+  font-size: large;
+  font-family: Arial, sans-serif; /* Change the font family as needed */
+  letter-spacing: 1px; /* Adjust letter spacing for your preference */
+}

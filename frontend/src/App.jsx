@@ -1,10 +1,12 @@
-import Sample from './pages/Sample'
+import Body from './pages/Body';
+import Header from './pages/Header';
 
 function App() {
   return (
-    <div>
-      <h1>Hello1234</h1>
-      <Sample></Sample>
+
+    <div>  
+      <Header/>
+      <Body/>
     </div>
   );
 }
