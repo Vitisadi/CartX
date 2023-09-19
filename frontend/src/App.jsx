@@ -1,5 +1,6 @@
-import Body from './pages/Body';
-import Header from './pages/Header';
+import Body from './components/Body';
+import Header from './components/Header';
+import SearchBar from './components/SearchBar';
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
     <div>  
       <Header/>
       <Body/>
+      <SearchBar/>
     </div>
   );
 }
