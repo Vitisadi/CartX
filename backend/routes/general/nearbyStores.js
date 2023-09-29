@@ -14,6 +14,31 @@ router.put(`/${parsed.name}`, (req, res) => {
     return res.status(400).json({ error: 'ZipCode is required' });
   }
 
+  require('dotenv').config(); // Load environment variables from .env file
+
+  // Access your API key
+  const apiKey = process.env.API_KEY;
+
+  // Define the endpoint for the Nearby Search request
+  const endpoint = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json';
+
+  // Define your search parameters
+  const location = 'latitude,longitude'; // Replace with the coordinates of your location
+  const radius = '500'; // Radius in meters
+  //const keyword; tbd
+
+
+
+
+
+
+
+
+
+
+
+
+
   const sampleStores = [
     'exampleAPI',
     'target',
