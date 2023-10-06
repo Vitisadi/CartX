@@ -8,6 +8,8 @@ const __filename = fileURLToPath(import.meta.url);
 const parsed = path.parse(__filename);
 
 router.get(`/${parsed.name}`, (req, res) => {
+  const items = req.body.items;
+  
   const data = [
     {
       item: "orange",

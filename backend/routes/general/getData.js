@@ -10,23 +10,31 @@ const parsed = path.parse(__filename);
 
 router.put(`/${parsed.name}`, async (req, res) => {
   try {
-    const { stores } = req.body;
+    const { stores, items } = req.body;
     console.log("Received stores:", stores);
+    console.log("Recieved items:", items)
 
     if (!stores || !Array.isArray(stores)) {
       return res.status(400).json({ error: 'List of stores is required' });
+    }
+
+    if (!items || !Array.isArray(items)) {
+      return res.status(400).json({ error: 'List of items is required' });
     }
 
     const results = {};
 
     for (const store of stores) {
       try {
-        const response = await axios.get(`http://localhost:8080/${store}`);
-        results[store] = response.data;
+          const response = await axios.put(`http://localhost:8080/${store}`, {
+              items
+          });
+          results[store] = response.data;
       } catch (error) {
-        console.warn(`Failed to fetch data for store: ${store}`);
+          console.warn(`Failed to send data for store: ${store}`);
       }
-    }
+  }
+  
 
     res.json(results);
   } catch (error) {

@@ -31,7 +31,10 @@ const SearchBar = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ stores: data1.stores }),  
+        body: JSON.stringify({
+          stores: data1.stores, 
+          items: ["Milk", "Chocolate Pretzels"]
+        }),  
       });
     })
     .then(response => {
