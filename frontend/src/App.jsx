@@ -11,44 +11,25 @@ function App() {
 
   const handleSubmit = () => {  
       // First API call to nearbyStores
-      fetch("http://localhost:8080/nearbyStores", {
+      fetch("http://localhost:8080/getData", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ zipCode }),
+        body: JSON.stringify({
+          items: items,
+          userAddress: zipCode
+        }), 
       })
       .then(response => {
         if (response.ok) {
           return response.json();
         } else {
-          throw new Error("Failed to fetch data from nearbyStores");
+          throw new Error("Failed to gather data");
         }
       })
       .then(data1 => {
-        console.log("Received data from nearbyStores:", data1);
-      
-        // Second API call to getData
-        return fetch("http://localhost:8080/getData", {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            stores: data1.stores, 
-            items: items
-          }),  
-        });
-      })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Failed to fetch data from getData");
-        }
-      })
-      .then(data2 => {
-        console.log("Received data from getData:", data2);
+        console.log("Received data: ", data1);
       })
       .catch(error => {
         console.error("There was a problem with the fetch operation:", error);

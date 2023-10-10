@@ -9,6 +9,7 @@ const parsed = path.parse(__filename);
 
 router.put(`/${parsed.name}`, (req, res) => {
   const items = req.body.items;
+  const address = req.body.address;
 
   const data = [
     {

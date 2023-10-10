@@ -8,9 +8,9 @@ const __filename = fileURLToPath(import.meta.url);
 const parsed = path.parse(__filename);
 
 router.put(`/${parsed.name}`, (req, res) => {
-  const { zipCode } = req.body;
+  const { address } = req.body;
 
-  if (!zipCode) {
+  if (!address) {
     return res.status(400).json({ error: 'ZipCode is required' });
   }
 

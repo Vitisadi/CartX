@@ -28,6 +28,8 @@ const parsed = path.parse(__filename);
 
 router.put(`/${parsed.name}`, async (req, res) => {
   const items = req.body.items;
+  const address = req.body.address;
+
   // try {
   //   const data = await scrapeWalmart("Ice+Cream");
   //   res.send(data);
