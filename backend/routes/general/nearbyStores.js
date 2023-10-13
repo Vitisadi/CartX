@@ -15,7 +15,8 @@ router.put(`/${parsed.name}`, (req, res) => {
   }
 
   const sampleStores = [
-    'target_scrape'
+    'target_scrape',
+    'exampleAPI'
   ];
 
   res.json({ stores: sampleStores });
