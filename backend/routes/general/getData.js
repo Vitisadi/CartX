@@ -26,21 +26,26 @@ router.put(`/${parsed.name}`, async (req, res) => {
           });
 
     const stores = storesResponse.data["stores"]
-
-    const results = {};
-    let storeAddress = "temp"
+    
+    let results = {}
+    const promises = [];
     for (const store of stores) {
-      try {
-          const response = await axios.put(`http://localhost:8080/${store}`, {
-              items: items,
-              address: storeAddress
-          });
-          results[store] = response.data;
-      } catch (error) {
-          console.warn(`Failed to send data for store: ${store}`);
-      }
+        let storeAddress = "temp"
+        const promise = axios.put(`http://localhost:8080/${store}`, {
+            items: items,
+            address: storeAddress
+        })
+        .then(response => {
+            results[store] = response.data; 
+        })
+        .catch(error => {
+            console.warn(`Failed to send data for store: ${store}`); 
+        });
+
+        promises.push(promise); 
     }
-  
+
+    await Promise.all(promises);
 
     res.json(results);
   } catch (error) {
