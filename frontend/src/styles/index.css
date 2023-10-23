@@ -22,57 +22,64 @@ code {
   text-align: center; /* Center the text if necessary */
 }
 
-.names {
-  font-size: large;
-  font-family: Arial, sans-serif; /* Change the font family as needed */
-  letter-spacing: 1px; /* Adjust letter spacing for your preference */
-}
-
-.container {
-  width: 70%;
-  padding: 5%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.9));
-  background-position: center;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.search-bar {
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  max-width: 700px;
-  background: rgba(0, 0, 0, 0.2);
-  display: flex;
-  align-items: center;
-  border-radius: 60px;
-  padding: 5px 20px;
-  backdrop-filter: blur(4px) saturate(180%);
+  background-color: #000000;
+  text-align: center;
+  color: white;
 }
 
-.search-bar input {
-  background: transparent;
-  flex: 1;
-  border: 0;
+/* In your CSS or stylesheet */
+.custom-button {
+  background-color: #007bff; /* Set your desired background color */
+  color: white; /* Text color */
+  padding: 2px 10px; /* Adjust padding as needed */
+  border-radius: 5px; /* Add some rounded corners */
+  cursor: pointer; /* Add pointer cursor on hover */
+  margin: 2px;
+  /* Add more CSS rules as desired */
+}
+
+.custom-input {
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 25%;
+  font-size: 16px;
   outline: none;
-  padding: 24px 20px;
-  font-size: 20px;
-  color: #000000;
+  transition: border-color 0.3s;
+  margin-left: 5px;
 }
 
-::placeholder {
-  color: #000000;
+.custom-input:focus {
+  border-color: #007bff; /* Change the border color when input is focused */
 }
 
-.search-bar button img{
-  width: 25px;
+/* In your CSS or stylesheet */
+.store-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  width: fit-content;
 }
 
-.search-bar button{
-  border: 0;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  background-color: #ffffff;
-  cursor: pointer;
+.store-card h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+}
+
+.store-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.store-card li {
+  margin: 10px 0;
 }

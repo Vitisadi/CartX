@@ -36,11 +36,14 @@ router.put(`/${parsed.name}`, async (req, res) => {
               address: storeAddress
           });
           results[store] = response.data;
+
+          // prints the output
+          console.log(response.data);
+
       } catch (error) {
           console.warn(`Failed to send data for store: ${store}`);
       }
     }
-  
 
     res.json(results);
   } catch (error) {

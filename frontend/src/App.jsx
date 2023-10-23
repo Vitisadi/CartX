@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import Body from './components/Body';
 import Header from './components/Header';
-import SearchBar from './components/SearchBar';
 import ZipCode from './components/ZipCode';
 import ItemList from './components/ItemList';
+import Footer from "./components/Footer";
+import StoreCard from "./components/StoreCard";
 
 function App() {
   const [zipCode, setZipCode] = useState('');
   const [items, setItems] = useState([]);
+  const [data, setData] = useState(null);
 
   const handleSubmit = () => {  
       // First API call to nearbyStores
@@ -28,8 +29,9 @@ function App() {
           throw new Error("Failed to gather data");
         }
       })
-      .then(data1 => {
-        console.log("Received data: ", data1);
+      .then(data => {
+        console.log("Received data: ", data);
+        setData(data);
       })
       .catch(error => {
         console.error("There was a problem with the fetch operation:", error);
@@ -37,14 +39,26 @@ function App() {
   };
 
   return (
-    <div>  
-      <Header/>
-      <Body/>
-      <ItemList items={items} setItems={setItems} />
-      <ZipCode zipCode={zipCode} setZipCode={setZipCode} handleSubmit={handleSubmit} />
-      <SearchBar/>
-    </div>
+
+      <div>
+        <Header />
+        <ItemList items={items} setItems={setItems} />
+        <ZipCode zipCode={zipCode} setZipCode={setZipCode} handleSubmit={handleSubmit} />        
+
+        {data && (
+        <div>
+          <ul>
+            {Object.entries(data).map(([storeName, storeData], storeIndex) => (
+              <li key={storeName}>
+                <StoreCard storeName={storeName} storeData={storeData} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      
+  <Footer/>
+      </div>
   );
 }
-
 export default App;

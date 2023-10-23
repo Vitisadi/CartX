@@ -18,9 +18,12 @@ const ItemList = ({ items, setItems }) => {
           value={currentItem}
           onChange={e => setCurrentItem(e.target.value)}
           placeholder="Add item"
+          className="custom-input"
         />
-        <button type="submit">Add to List</button>
+        
+        <button type="submit" className="custom-button">Add to List</button>
       </form>
+      
       <ul>
         {items.map((item, index) => (
           <li key={index}>{item}</li>
