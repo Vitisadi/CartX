@@ -16,8 +16,9 @@ const ZipCode = ({ zipCode, setZipCode, handleSubmit }) => {
           value={zipCode}
           onChange={e => setZipCode(e.target.value)}
           placeholder="Enter Zip Code"
+          className="custom-input"
         />
-        <button type="submit">Submit</button>
+        <button type="submit" className="custom-button">Submit</button>
       </form>
     </div>
   );
