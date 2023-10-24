@@ -11,19 +11,23 @@ const parsed = path.parse(__filename);
 import { Builder, By, until } from 'selenium-webdriver';
 import chrome from 'selenium-webdriver/chrome.js';
 
-// const proxyServer = 'http://8.219.152.206:27300';
-
 async function findDivIndex(targetUrl) {
   try {
     const browser = await puppeteer.launch({ 
       headless: false,
-      // args: [`--proxy-server=${proxyServer}`]
     });
+
     const page = await browser.newPage();
 
     await page.goto(targetUrl);
-    await page.waitForTimeout(5000);
 
+    // Scroll down by a constant height
+    await page.evaluate((scrollHeight) => {
+      window.scrollBy(0, scrollHeight);
+    }, 800);
+
+    await page.waitForTimeout(5000);
+     
     for (let div_index = 1; div_index < 10; div_index++) {
       const currentXPath = `//*[@id="pageBodyContainer"]/div[1]/div[1]/div[1]/div[${div_index}]/div[1]/div[1]/section[1]/div[1]`;
       const elementHandle = await page.$x(currentXPath);
@@ -41,19 +45,18 @@ async function findDivIndex(targetUrl) {
 }
 
 async function scrapeTargetWebsite() {
-  const item = "chocolate+icecream";
+  const item = "salt";
   const zipcode = "10954";
   const Products = [];
 
   // Set Chrome options to run in headless modee
   const chromeOptions = new chrome.Options();
-  // chromeOptions.addArguments('--headless');
+  chromeOptions.addArguments('--headless');
   chromeOptions.addArguments('--disable-gpu');
   chromeOptions.addArguments('--disable-extensions');
   chromeOptions.addArguments('--disable-software-rasterizer');
   chromeOptions.addArguments('--disable-notifications');
   chromeOptions.addArguments('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36');
-  // chromeOptions.addArguments(`--proxy-server=${proxyServer}`);
 
   // Initialize a Selenium WebDriver with Chrome options
   const driver = new Builder()
@@ -96,6 +99,13 @@ async function scrapeTargetWebsite() {
           // Stores the elements in array
           Products.push(element_typeArray);
 
+          // // const image_xpath = `//*[@id="pageBodyContainer"]/div[1]/div[1]/div[1]/div[${divIndex}]/div[1]/div[1]/section[1]/div[1]/div[${item_number}]/div[1]/div[1]/div[1]/div[1]/h3[1]/div[1]/div[1]/a[1]/div[1]/picture[1]/img[1]`;
+          // // const image_element = await driver.findElement(By.xpath(image_xpath));
+          // // const image_source = await image_element.getAttribute("src");
+
+          // // // adds the image source
+          // // element_typeArray.push(image_source);
+
           console.log(element_typeArray);
 
           // page scroll 
@@ -119,41 +129,41 @@ async function scrapeTargetWebsite() {
 router.put(`/${parsed.name}`, async (req, res) => {
   try {
     // Call your web scraping function
-    // const scrapedData = await scrapeTargetWebsite();
+    const scrapedData = await scrapeTargetWebsite();
 
     // Initialize an empty array to hold scraped data
-    const scrapedData = [];
+    // const scrapedData = [];
 
-    // Example data for scraping (you can replace this with your actual web scraping logic)
-    const data1 = [
-      "Haagen Dazs Strawberry Ice Cream Bar - 3pk",
-      "Haagen-Dazs",
-      "4.3 out of 5 stars with 180 ratings",
-      "180",
-      "SNAP EBT eligible",
-      "$1.99 ($0.55/fluid ounce)",
-      "at Spring Valley",
-      "Shipping not available",
-      "Not available at Spring Valley",
-      "Check stores",
-    ];
+    // // Example data for scraping (you can replace this with your actual web scraping logic)
+    // const data1 = [
+    //   "Haagen Dazs Strawberry Ice Cream Bar - 3pk",
+    //   "Haagen-Dazs",
+    //   "4.3 out of 5 stars with 180 ratings",
+    //   "180",
+    //   "SNAP EBT eligible",
+    //   "$1.99 ($0.55/fluid ounce)",
+    //   "at Spring Valley",
+    //   "Shipping not available",
+    //   "Not available at Spring Valley",
+    //   "Check stores",
+    // ];
 
-    const data2 = [
-      "Breyers Homemade Strawberry Ice Cream - 48oz",
-      "Breyers Ice Cream",
-      "4.9 out of 5 stars with 120 ratings",
-      "120",
-      "SNAP EBT eligible",
-      "$8.19 ($0.11/ounce)",
-      "at Spring Valley",
-      "Get it as soon as 1pm today with Shipt",
-      "Ready within 2 hours with pickup",
-      "Deliver it"
-    ];
+    // const data2 = [
+    //   "Breyers Homemade Strawberry Ice Cream - 48oz",
+    //   "Breyers Ice Cream",
+    //   "4.9 out of 5 stars with 120 ratings",
+    //   "120",
+    //   "SNAP EBT eligible",
+    //   "$8.19 ($0.11/ounce)",
+    //   "at Spring Valley",
+    //   "Get it as soon as 1pm today with Shipt",
+    //   "Ready within 2 hours with pickup",
+    //   "Deliver it"
+    // ];
 
-    // Push the data into the scrapedData array
-    scrapedData.push(data1);
-    scrapedData.push(data2);
+    // // Push the data into the scrapedData array
+    // scrapedData.push(data1);
+    // scrapedData.push(data2);
 
     // Send the scraped data as a JSON response
     res.json(scrapedData);
@@ -164,15 +174,3 @@ router.put(`/${parsed.name}`, async (req, res) => {
 });
 
 export default router;
-
-// // const image_xpath = `//*[@id="pageBodyContainer"]/div[1]/div[1]/div[1]/div[${divIndex}]/div[1]/div[1]/section[1]/div[1]/div[${item_number}]/div[1]/div[1]/div[1]/div[1]/h3[1]/div[1]/div[1]/a[1]/div[1]/picture[1]/img[1]`;
-// // const image_element = await driver.findElement(By.xpath(image_xpath));
-// // const image_source = await image_element.getAttribute("src");
-
-// // // adds the image source
-// // element_typeArray.push(image_source);
-
-
-
-
-

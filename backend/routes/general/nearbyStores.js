@@ -15,8 +15,7 @@ router.put(`/${parsed.name}`, (req, res) => {
   }
 
   const sampleStores = [
-    'target',
-    'walmart'
+    'target'
   ];
 
   res.json({ stores: sampleStores });
