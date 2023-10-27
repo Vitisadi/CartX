@@ -7,7 +7,10 @@ const router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
 const parsed = path.parse(__filename);
 
-router.get(`/${parsed.name}`, (req, res) => {
+router.put(`/${parsed.name}`, (req, res) => {
+  const items = req.body.items;
+  const address = req.body.address;
+
   const data = [
     {
       item: "apple",

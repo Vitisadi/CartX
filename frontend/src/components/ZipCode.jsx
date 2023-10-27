@@ -1,70 +1,27 @@
-import React, { useState } from "react";
-import "../styles/index.css";
+import React from "react";
 
-const SearchBar = () => {
-  const [zipCode, setZipCode] = useState("");
+const ZipCode = ({ zipCode, setZipCode, handleSubmit }) => {
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // First API call to nearbyStores
-    fetch("http://localhost:8080/nearbyStores", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ zipCode }),
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Failed to fetch data from nearbyStores");
-      }
-    })
-    .then(data1 => {
-      console.log("Received data from nearbyStores:", data1);
-    
-      // Second API call to getData
-      return fetch("http://localhost:8080/getData", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ stores: data1.stores }),  
-      });
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Failed to fetch data from getData");
-      }
-    })
-    .then(data2 => {
-      console.log("Received data from getData:", data2);
-    })
-    .catch(error => {
-      console.error("There was a problem with the fetch operation:", error);
-    });
+  const handleZipSubmit = (e) => {
+    e.preventDefault();
+    if (zipCode) {
+      handleSubmit();
+    }
   };
 
   return (
-    <div className="container">
-    <form onSubmit={handleSubmit}>
-      <label>
-        Zip Code:
+    <div>
+      <form onSubmit={handleZipSubmit}>
         <input
-          type="text"
-          name="Zip Code"
           value={zipCode}
-          onChange={(e) => setZipCode(e.target.value)}
+          onChange={e => setZipCode(e.target.value)}
+          placeholder="Enter Zip Code"
+          className="custom-input"
         />
-      </label>
-      <input type="submit" value="Zip Code Submit" />
-    </form>
-  </div>
+        <button type="submit" className="custom-button">Submit</button>
+      </form>
+    </div>
   );
 };
 
-export default SearchBar;
+export default ZipCode;

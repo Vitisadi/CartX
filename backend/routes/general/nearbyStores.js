@@ -8,7 +8,6 @@ const router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
 const parsed = path.parse(__filename);
 
-
 router.put(`/${parsed.name}`, async (req, res) => {
   let storeArray = [];
 
@@ -117,7 +116,7 @@ router.put(`/${parsed.name}`, async (req, res) => {
 
   const { zipCode } = req.body;
 
-  if (!zipCode) {
+  if (!address) {
     return res.status(400).json({ error: 'ZipCode is required' });
   }
 
@@ -127,6 +126,7 @@ router.put(`/${parsed.name}`, async (req, res) => {
   // Search Parameters
   const location = await fetchCoordinates(googleKey, zipCode);
   const type = 'store' //Using store as key word
+
 
   // API URL for Nearby Search request
   const apiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?type=${type}&location=${location}&rankby=distance&key=${googleKey}`;
