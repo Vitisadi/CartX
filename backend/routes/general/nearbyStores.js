@@ -2,6 +2,7 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import dotenv from 'dotenv';
+import fetch from 'node-fetch';
 const router = express.Router();
 
 // Get file route name (Same as file name)
@@ -108,13 +109,14 @@ router.put(`/${parsed.name}`, async (req, res) => {
       }, 2000);
     }
     else{
-      const storeData = JSON.stringify(storeArray, null, 2);
-      res.json(storeData);
+      storeArray.sort((a,b) => {
+        return a.distance - b.distance
+      });
+      res.json(storeArray);
     }
   }
 
-
-  const { zipCode } = req.body;
+  const { address } = req.body;
 
   if (!address) {
     return res.status(400).json({ error: 'ZipCode is required' });
@@ -124,7 +126,7 @@ router.put(`/${parsed.name}`, async (req, res) => {
   // Access your API key
   const googleKey = process.env.API_KEY;
   // Search Parameters
-  const location = await fetchCoordinates(googleKey, zipCode);
+  const location = await fetchCoordinates(googleKey, address);
   const type = 'store' //Using store as key word
 
 

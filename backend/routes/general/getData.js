@@ -21,30 +21,29 @@ router.put(`/${parsed.name}`, async (req, res) => {
     }
 
     const storesResponse = await axios.put(`http://localhost:8080/nearbyStores`, {
-              items: items,
-              address: userAddress
-          });
+      address: userAddress
+    });
 
-    const stores = storesResponse.data["stores"]
+    const stores =storesResponse.data;
     
     let results = {}
     const promises = [];
-    for (const store of stores) {
-        let storeAddress = "temp"
-        const promise = axios.put(`http://localhost:8080/${store}`, {
-            items: items,
-            address: storeAddress
-        })
-        .then(response => {
-            results[store] = response.data; 
-        })
-        .catch(error => {
-            console.warn(`Failed to send data for store: ${store}`); 
-        });
+    stores.forEach(store => {
+      let storeAddress = store.address
+      const promise = axios.put(`http://localhost:8080/${store.name}`, {
+        items: items,
+        address: storeAddress
+      })
+      .then(response => {
+        results[store] = response.data; 
+      })
+      .catch(error => {
+        console.warn(`Failed to send data for store: ${store.name}`); 
+      });
 
-        promises.push(promise); 
-    }
-
+      promises.push(promise); 
+    });
+    
     await Promise.all(promises);
 
     res.json(results);
