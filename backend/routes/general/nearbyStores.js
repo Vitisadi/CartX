@@ -2,6 +2,7 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import dotenv from 'dotenv';
+import fetch from 'node-fetch';
 const router = express.Router();
 
 // Get file route name (Same as file name)
@@ -111,11 +112,9 @@ router.put(`/${parsed.name}`, async (req, res) => {
       storeArray.sort((a,b) => {
         return a.distance - b.distance
       });
-      const storeData = JSON.stringify(storeArray, null, 2);
-      res.json(storeData);
+      res.json(storeArray);
     }
   }
-
 
   const { address } = req.body;
 
