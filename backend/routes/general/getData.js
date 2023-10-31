@@ -21,17 +21,18 @@ router.put(`/${parsed.name}`, async (req, res) => {
     }
 
     const storesResponse = await axios.put(`http://localhost:8080/nearbyStores`, {
-              items: items,
               address: userAddress
           });
 
-    const stores = storesResponse.data["stores"]
+    const stores = storesResponse.data;
+    console.log(stores);
+    exit();
     
     let results = {}
     const promises = [];
     for (const store of stores) {
-        let storeAddress = "temp"
-        const promise = axios.put(`http://localhost:8080/${store}`, {
+        let storeAddress = store.address
+        const promise = axios.put(`http://localhost:8080/${store.name}`, {
             items: items,
             address: storeAddress
         })
