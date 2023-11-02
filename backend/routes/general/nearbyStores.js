@@ -138,7 +138,7 @@ router.put(`/${parsed.name}`, async (req, res) => {
 
   const apiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?type=${type}&location=${location}&rankby=distance&key=${googleKey}`;
   fetchPlaces(apiUrl, null, googleKey, location);
-  res.json({ stores: sampleStores });
+  // res.json({ stores: sampleStores });
 });
 
 export default router;
