@@ -123,12 +123,12 @@ router.put(`/${parsed.name}`, async (req, res) => {
     return res.status(400).json({ error: 'ZipCode is required' });
   }
 
-  const sampleStores = [
+  // const sampleStores = [
     
-    'shoprite',
-    'target',
-    'hannaford'
-  ];
+  //   'shoprite',
+  //   'target',
+  //   'hannaford'
+  // ];
   dotenv.config();
   // Access your API key
   const googleKey = process.env.API_KEY;
