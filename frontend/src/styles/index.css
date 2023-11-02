@@ -58,28 +58,67 @@ code {
   border-color: #007bff; /* Change the border color when input is focused */
 }
 
-/* In your CSS or stylesheet */
-.store-card {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px;
-  background-color: #f9f9f9;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  width: fit-content;
+
+/* ShopRite.css */
+
+/* ShopRite.css */
+
+.shoprite-card {
+  border: 3px solid #000000;
+  padding: 15px;
+  margin: 15px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.store-card h2 {
-  margin: 0;
-  padding: 0;
-  font-size: 18px;
+.shoprite-card img {
+  max-width: 150px;
+  height: 150px;
+  margin-bottom: 20px; /* Add margin to create consistent space */
 }
 
-.store-card ul {
-  list-style: none;
-  padding: 0;
+.shoprite-card h3 {
+  font-size: 16px;
+  margin: 0; /* Reset margin to avoid extra space */
 }
 
-.store-card li {
-  margin: 10px 0;
+.shoprite-card p {
+  margin: 8px 0; /* Add margin for spacing between elements */
+}
+
+.shoprite-product-cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-name-box {
+  height: 70px;
+  width: auto;
+  margin-top: 30px;
+  text-align: center;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 40px;
+}
+
+.product-price-box {
+  height: 20px;
+  width: auto;
+  margin-top: 0px;
+  text-align: center;
+  font-size: 35px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+  text-decoration: solid;
+}
+
+.product-size-box {
+  height: 20px;
+  width: auto;
+  margin-top: 5px;
+  text-align: center;
+  font-size: 5px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+  text-decoration: solid;
 }

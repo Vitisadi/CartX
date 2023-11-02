@@ -9,6 +9,7 @@ const router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
 const parsed = path.parse(__filename);
 
+
 router.put(`/${parsed.name}`, async (req, res) => {
   let storeArray = [];
 
@@ -122,6 +123,12 @@ router.put(`/${parsed.name}`, async (req, res) => {
     return res.status(400).json({ error: 'ZipCode is required' });
   }
 
+  // const sampleStores = [
+    
+  //   'shoprite',
+  //   'target',
+  //   'hannaford'
+  // ];
   dotenv.config();
   // Access your API key
   const googleKey = process.env.API_KEY;
@@ -129,10 +136,9 @@ router.put(`/${parsed.name}`, async (req, res) => {
   const location = await fetchCoordinates(googleKey, address);
   const type = 'store' //Using store as key word
 
-
-  // API URL for Nearby Search request
   const apiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?type=${type}&location=${location}&rankby=distance&key=${googleKey}`;
   fetchPlaces(apiUrl, null, googleKey, location);
+  // res.json({ stores: sampleStores });
 });
 
 export default router;

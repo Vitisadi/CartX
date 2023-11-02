@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Header from './components/Header';
 import ZipCode from './components/ZipCode';
 import ItemList from './components/ItemList';
-import Footer from "./components/Footer";
-import StoreCard from "./components/StoreCard";
+// import Footer from "./components/Footer";
+import ShopRiteDisplay from "./pages/ShopRiteDisplay";
+import TargetCardDisplay from "./pages/TargetDisplay";
 
 function App() {
   const [zipCode, setZipCode] = useState('');
@@ -30,13 +31,17 @@ function App() {
         }
       })
       .then(data => {
-        console.log("Received data: ", data);
+        console.log("Received data from stores: ", data);
         setData(data);
       })
       .catch(error => {
         console.error("There was a problem with the fetch operation:", error);
       });
   };
+
+  // filters the shop rite data
+  const shopriteData = data ? data["shoprite"] : null;
+  const targetData = data ? data["target"] : null;
 
   return (
 
@@ -45,6 +50,10 @@ function App() {
         <ItemList items={items} setItems={setItems} />
         <ZipCode zipCode={zipCode} setZipCode={setZipCode} handleSubmit={handleSubmit} />        
 
+        {shopriteData &&  <ShopRiteDisplay shopriteData={shopriteData} />}
+        {targetData && <TargetCardDisplay targetData={targetData} />}
+      
+      {/* 
         {data && (
         <div>
           <ul>
@@ -55,10 +64,12 @@ function App() {
             ))}
           </ul>
         </div>
-      )}
-      
-  <Footer/>
-      </div>
+        )} */}
+      </div> 
   );
 }
 export default App;
+
+
+
+      
