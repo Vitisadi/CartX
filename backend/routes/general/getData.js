@@ -47,6 +47,7 @@ router.put(`/${parsed.name}`, async (req, res) => {
 
     await Promise.all(promises);
 
+    console.log(results);
     res.json(results);
   } catch (error) {
     console.error('Error fetching data:', error);
