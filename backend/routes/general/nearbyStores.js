@@ -120,7 +120,7 @@ router.put(`/${parsed.name}`, async (req, res) => {
   const { address } = req.body;
 
   if (!address) {
-    return res.status(400).json({ error: 'ZipCode is required' });
+    return res.status(400).json({ error: 'Address is required' });
   }
 
   // const sampleStores = [
