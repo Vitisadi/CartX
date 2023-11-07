@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
+import { DateRange } from '@mui/icons-material';
 const router = express.Router();
 
 // Get file route name (Same as file name)
@@ -12,8 +13,7 @@ const parsed = path.parse(__filename);
 
 router.put(`/${parsed.name}`, async (req, res) => {
   let storeArray = [];
-
-
+  const startTime = new Date();
   async function fetchCoordinates(googleKey, address){
     //This code is to convert the zip code to latitute and longitude coordinates
     //**********may implement using address as another option
@@ -113,6 +113,10 @@ router.put(`/${parsed.name}`, async (req, res) => {
       storeArray.sort((a,b) => {
         return a.distance - b.distance
       });
+      const endTime = new Date();
+      console.log("Time: " + (endTime - startTime));
+      console.log(storeArray);
+
       res.json(storeArray);
     }
   }
@@ -134,9 +138,9 @@ router.put(`/${parsed.name}`, async (req, res) => {
   const googleKey = process.env.API_KEY;
   // Search Parameters
   const location = await fetchCoordinates(googleKey, address);
-  const type = 'store' //Using store as key word
+  //const type = 'grocery_or_supermarket' Will use keyword = grocery for now, maybe come back to this
 
-  const apiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?type=${type}&location=${location}&rankby=distance&key=${googleKey}`;
+  const apiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=grocery&location=${location}&key=${googleKey}&radius=16093.4`;
   fetchPlaces(apiUrl, null, googleKey, location);
   // res.json({ stores: sampleStores });
 });
