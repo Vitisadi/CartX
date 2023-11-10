@@ -1,0 +1,157 @@
+.site-header {
+  background-color:white;
+  height: 60px;
+  width:100%;
+  /* box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1), 0 -4px 4px rgba(0, 0, 0, 0.1);  */
+  display: flex;
+  flex-direction: row; 
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  justify-content: space-between;
+  z-index: 100;
+
+  border-bottom: 1px solid rgb(228, 228, 228);
+ }
+
+ .left{
+  /* background-color: lightblue; */
+  width: 200px;
+  display:flex;
+  align-items:center;
+ }
+
+ .hamburger-button{
+  background-color: white;;
+  height:40px;
+  width: 40px;
+  margin-left:24px;
+  margin-right:12px;
+
+  display:flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius:50%;
+  border:none;
+
+  cursor:pointer;
+
+ }
+
+ .hamburger-button:hover {
+  background-color: rgb(234, 234, 234)
+}
+
+ .header-logo {
+  height:60px;
+
+  margin-right:auto;
+}
+ 
+.middle{
+  /* background-color:pink; */
+   max-width:600px;
+   min-width: 250px;
+   flex:1;
+   display: flex;
+   align-items: center; /* Center the content vertically */
+
+   margin-left: 35px;
+   margin-right: 18px;
+
+}
+
+
+.search-form {
+  display: flex;
+  padding-left: 10px;
+  font-size: 16px;
+  height:40px;
+  width:100%;
+  box-shadow: 
+    0 0 4px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgb(230, 230, 230);
+  border-radius:30px;
+  overflow: hidden;
+  margin: 6px;
+}
+
+.magnifying-glass {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.search-bar {
+  border:none;
+  padding-left:10px;
+  width:100%;
+}
+
+.search-bar::placeholder{
+  font-size:16px;
+}
+
+
+.search-form:focus-within{
+  border-color:rgb(179, 179, 179);
+}
+
+.search-bar:focus {
+  outline: none; /* Remove the default outline on focus if you want */
+}
+
+@media (max-width: 300px) {
+  .magnifying-glass {
+    font-size: 0.8em;
+  }
+  .search-bar{
+    padding: 8px 16px;
+  }
+}
+
+ .right{
+   /* background-color:lightblue; */
+   width:200px;
+   min-width:100px; 
+   max-width:500px;
+   display:flex;
+   align-items:center;
+
+    flex-shrink:1;
+  }
+
+
+
+  .input-address,
+  .view-cart{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:40px;
+    width:40px;
+    margin-left:20px;
+    margin-right:20px;
+    border-radius:50%;
+    border:none;
+
+    background-color: white;
+  }
+
+  .input-address:hover,
+  .view-cart:hover{
+    background-color: rgb(234, 234, 234)
+  }
+ 
+ 
+
+ 
+
+
+
+ 
+ 

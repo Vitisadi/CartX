@@ -8,6 +8,26 @@ const router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
 const parsed = path.parse(__filename);
 
+function isSupported(inputStoreName) {
+  // i = case-insensitive
+  const storePatterns = [
+    /Target/i, 
+    /Hannaford/i,
+    /Shoprite/i,
+  ];
+
+  // Search for a match
+  for (const pattern of storePatterns) {
+    const match = inputStoreName.match(pattern);
+    // If found, return
+    if (match) {
+      return match[0]; 
+    }
+  }
+
+  return null;
+}
+
 router.put(`/${parsed.name}`, async (req, res) => {
   try {
     const { items, userAddress } = req.body;
@@ -28,9 +48,21 @@ router.put(`/${parsed.name}`, async (req, res) => {
     
     let results = {}
     const promises = [];
+    const processedStores = new Set();
     stores.forEach(store => {
-      let storeAddress = store.address
-      const promise = axios.put(`http://localhost:8080/${store.name}`, {
+      let storeAddress = store.address;
+
+      // Skip not supporting stores or already processed
+      const matchedStoreName = isSupported(store.name);
+      if (!matchedStoreName || processedStores.has(matchedStoreName)) {
+        return
+      }
+
+      processedStores.add(matchedStoreName);
+
+      console.log(`Now running ${matchedStoreName}`)
+
+      const promise = axios.put(`http://localhost:8080/${matchedStoreName}`, {
         items: items,
         address: storeAddress
       })
@@ -38,7 +70,7 @@ router.put(`/${parsed.name}`, async (req, res) => {
         results[store] = response.data; 
       })
       .catch(error => {
-        console.warn(`Failed to send data for store: ${store.name}`); 
+        console.warn(`Failed to send data for store: ${store.name} with a match of ${matchedStoreName}`); 
       });
 
       promises.push(promise); 

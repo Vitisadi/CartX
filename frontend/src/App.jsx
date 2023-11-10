@@ -47,6 +47,7 @@ function App() {
 
       <div>
         <Header />
+        <br></br>
         <ItemList items={items} setItems={setItems} />
         <ZipCode zipCode={zipCode} setZipCode={setZipCode} handleSubmit={handleSubmit} />        
 
