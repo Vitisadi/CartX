@@ -20,7 +20,7 @@ const Header = () => {
                 </form>
 
             </div>
-            <div className="right">
+            <div className="right"> 
                 <button className="input-address">
                     <TiLocation size={30} />
                 </button>
