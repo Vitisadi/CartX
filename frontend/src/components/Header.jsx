@@ -7,7 +7,7 @@ import "../styles/header.css"
 const Header = () => {
     return (
         <header className="site-header">
-            <div class="left">
+            <div className="left">
                 <button className="hamburger-button">
                     <SlMenu />
                 </button>
@@ -20,7 +20,7 @@ const Header = () => {
                 </form>
 
             </div>
-            <div class="right">
+            <div className="right"> 
                 <button className="input-address">
                     <TiLocation size={30} />
                 </button>
