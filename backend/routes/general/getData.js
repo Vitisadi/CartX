@@ -14,6 +14,7 @@ function isSupported(inputStoreName) {
     /Target/i, 
     /Hannaford/i,
     /Shoprite/i,
+    /CVS/i,
   ];
 
   // Search for a match
