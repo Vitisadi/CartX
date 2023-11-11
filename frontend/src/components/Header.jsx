@@ -1,33 +1,26 @@
 import React from 'react';
 import logo from '../assets/cartx.png';
-import { SlMagnifier, SlMenu } from "react-icons/sl";
-import {TiShoppingCart, TiLocation} from "react-icons/ti";
 import "../styles/header.css"
+import SearchBar from './SearchBar';
+import Cart from './Cart';
+import Address from './Address';
+import Menu from './Menu';
 
 const Header = () => {
     return (
         <header className="site-header">
             <div className="left">
-                <button className="hamburger-button">
-                    <SlMenu />
-                </button>
+                <Menu />
                 <img src={logo} alt="Logo" className="header-logo" />             
             </div>
-            <div className="middle">
-                <form className="search-form">
-                    <span className="magnifying-glass"><SlMagnifier /></span>
-                    <input type="text" placeholder="Search..." className="search-bar" />
-                </form>
 
+            <SearchBar />
+        
+            <div className="right">
+                <Address />
+                <Cart />
             </div>
-            <div className="right"> 
-                <button className="input-address">
-                    <TiLocation size={30} />
-                </button>
-                <button className="view-cart">
-                    <TiShoppingCart size={30}/>
-                </button>
-            </div>
+
         </header>
     );
 }

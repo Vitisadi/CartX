@@ -18,6 +18,7 @@ const ShopRiteCard = ({ product }) => {
         
         <div className='product-size-box'>
           <p>{product[3]}</p>
+          <p>Shoprite</p>
         </div>
         
       </div>

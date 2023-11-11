@@ -132,58 +132,58 @@ router.put(`/${parsed.name}`, async (req, res) => {
     const items = req.body.items;
     const address = req.body.address;
 
-    const data = await scrapeTargetWebsite(items[0]);
+    // const data = await scrapeTargetWebsite(items[0]);
 
-    // const data = [
-    //   [
-    //     "Tillamook Medium White Cheddar Cheese Slices - 8oz",
-    //     "Tillamook",
-    //     "4.7 out of 5 stars with 241 ratings",
-    //     "241",
-    //     "SNAP EBT eligible",
-    //     "$4.29 ($0.54/ounce)",
-    //     "at Latham",
-    //     "Get it as soon as 9am tomorrow with Shipt",
-    //     "Sponsored",
-    //     "Ready tomorrow with pickup",
-    //     "Deliver it",
-    //     "https://target.scene7.com/is/image/Target/GUEST_483b7f0e-9f4b-4c06-8eaa-96dbc76e7f03?qlt=65&fmt=webp&hei=154&wid=154"
-    //   ],
-    //   [
-    //     "Tillamook Medium White Cheddar Cheese Slices - 8oz",
-    //     "Tillamook",
-    //     "4.7 out of 5 stars with 241 ratings",
-    //     "241",
-    //     "SNAP EBT eligible",
-    //     "$4.29 ($0.54/ounce)",
-    //     "at Latham",
-    //     "Get it as soon as 9am tomorrow with Shipt",
-    //     "Sponsored",
-    //     "Ready tomorrow with pickup",
-    //     "Deliver it",
-    //     "https://target.scene7.com/is/image/Target/GUEST_483b7f0e-9f4b-4c06-8eaa-96dbc76e7f03?qlt=65&fmt=webp&hei=154&wid=154"
-    //   ]
-    // ];    
+    const data = [
+      [
+        "Tillamook Medium White Cheddar Cheese Slices - 8oz",
+        "Tillamook",
+        "4.7 out of 5 stars with 241 ratings",
+        "241",
+        "SNAP EBT eligible",
+        "$4.29 ($0.54/ounce)",
+        "at Latham",
+        "Get it as soon as 9am tomorrow with Shipt",
+        "Sponsored",
+        "Ready tomorrow with pickup",
+        "Deliver it",
+        "https://target.scene7.com/is/image/Target/GUEST_483b7f0e-9f4b-4c06-8eaa-96dbc76e7f03?qlt=65&fmt=webp&hei=154&wid=154"
+      ],
+      [
+        "Tillamook Medium White Cheddar Cheese Slices - 8oz",
+        "Tillamook",
+        "4.7 out of 5 stars with 241 ratings",
+        "241",
+        "SNAP EBT eligible",
+        "$4.29 ($0.54/ounce)",
+        "at Latham",
+        "Get it as soon as 9am tomorrow with Shipt",
+        "Sponsored",
+        "Ready tomorrow with pickup",
+        "Deliver it",
+        "https://target.scene7.com/is/image/Target/GUEST_483b7f0e-9f4b-4c06-8eaa-96dbc76e7f03?qlt=65&fmt=webp&hei=154&wid=154"
+      ]
+    ];    
 
     // stores the data
-    const storageSubfolder = 'storage'; 
-    const targetSubfolder = 'target';
-    const fileName = path.join(parsed.dir, storageSubfolder, targetSubfolder, `${items[0]}.json`);
+    // const storageSubfolder = 'storage'; 
+    // const targetSubfolder = 'target';
+    // const fileName = path.join(parsed.dir, storageSubfolder, targetSubfolder, `${items[0]}.json`);
 
-    // Check if the file exists
-    if (fs.existsSync(fileName)) {
-      // Load the existing data from the file
-      const existingData = JSON.parse(fs.readFileSync(fileName));
+    // // Check if the file exists
+    // if (fs.existsSync(fileName)) {
+    //   // Load the existing data from the file
+    //   const existingData = JSON.parse(fs.readFileSync(fileName));
 
-      // Merge and deduplicate the data (based on a unique identifier)
-      const newData = deduplicateData(existingData, data);
+    //   // Merge and deduplicate the data (based on a unique identifier)
+    //   const newData = deduplicateData(existingData, data);
 
-      // Save the merged data back to the file
-      fs.writeFileSync(fileName, JSON.stringify(newData, null, 2));
-    } else {
-      // If the file doesn't exist, create it with the scraped data
-      fs.writeFileSync(fileName, JSON.stringify(data, null, 2));
-    }
+    //   // Save the merged data back to the file
+    //   fs.writeFileSync(fileName, JSON.stringify(newData, null, 2));
+    // } else {
+    //   // If the file doesn't exist, create it with the scraped data
+    //   fs.writeFileSync(fileName, JSON.stringify(data, null, 2));
+    // }
 
     res.json(data);
 
