@@ -128,7 +128,6 @@ router.put(`/${parsed.name}`, async (req, res) => {
     
     'shoprite',
     'target',
-    // 'hannaford',
     'cvs'
   ];
 

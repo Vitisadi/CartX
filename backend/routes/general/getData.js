@@ -9,45 +9,49 @@ const __filename = fileURLToPath(import.meta.url);
 const parsed = path.parse(__filename);
 
 router.put(`/${parsed.name}`, async (req, res) => {
-  try {
-    const { items, userAddress } = req.body;
 
-    if (!userAddress) {
+  try {
+    const item = req.body.item;
+    const address = req.body.userAddress;
+
+    // checks if the address is valid
+    if (!address) {
+      alert("Please enter a valid address");
       return res.status(400).json({ error: 'Address is required' });
     }
 
-    if (!items || !Array.isArray(items)) {
-      return res.status(400).json({ error: 'List of items is required' });
+    // checks if the item is valid
+    if (!item) {
+      return res.status(400).json({ error: 'Item is required' });
     }
 
     const storesResponse = await axios.put(`http://localhost:8080/nearbyStores`, {
-      address: userAddress
+      address: address
     });
 
-     const stores = storesResponse.data["stores"]
+    const stores = storesResponse.data["stores"]
 
-      let storeAddress = "temp"
+    console.log("Stores: ", stores);
 
-      let results = {}
-      const promises = [];
+    let storeAddress = "temp"
+
+    let results = {}
+    const promises = [];
       for (const store of stores) {
         try {
             const response = await axios.put(`http://localhost:8080/${store}`, {
-                items: items,
-                address: storeAddress
+                item: item,
+                address: address
             });
             results[store] = response.data;
-
-            // prints the output
-            console.log(response.data);
 
         } catch (error) {
             console.warn(`Failed to send data for store: ${store}`);
         }
           let storeAddress = "temp"
           const promise = axios.put(`http://localhost:8080/${store}`, {
-              items: items,
-              address: storeAddress
+              item: item,
+              address: address
           })
           .then(response => {
               results[store] = response.data; 
@@ -59,16 +63,14 @@ router.put(`/${parsed.name}`, async (req, res) => {
           promises.push(promise); 
       }
 
-        await Promise.all(promises);
-
-        res.json(results);
-        } catch (error) {
-        console.error('Error fetching data:', error);
-        }
+      await Promise.all(promises);
+      res.json(results);
+    } catch (error) {
+    console.error('Error fetching data:', error);
+}
 });
 
 export default router;
-
 
 // import express from 'express';
 // import axios from 'axios';

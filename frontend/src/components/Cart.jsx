@@ -1,12 +1,20 @@
 import React from 'react';
-import {TiShoppingCart} from "react-icons/ti";
-import "../styles/header.css"
+import { TiShoppingCart } from "react-icons/ti";
+import { useNavigate } from 'react-router-dom';
+import "../styles/header.css";
 
 const Cart = () => {
-    return ( 
-        <button className="view-cart">
-            <TiShoppingCart size={30}/>
+    const navigate = useNavigate();
+
+    const redirectToCart = () => {
+        navigate('/cart'); // Replace '/cart' with the path to your Cart page
+    };
+
+    return (
+        <button className="view-cart" onClick={redirectToCart}>
+            <TiShoppingCart size={30} />
         </button>
     );
 }
+
 export default Cart;

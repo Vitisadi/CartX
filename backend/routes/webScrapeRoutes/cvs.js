@@ -128,54 +128,54 @@ async function scrapeCVSWebsite(item_name) {
 
 router.put(`/${parsed.name}`, async (req, res) => {
   try {
-    const items = req.body.items;
+    const item = req.body.item;
     const address = req.body.address;
 
-    // const data = await scrapeCVSWebsite(items[0]);
+    const data = await scrapeCVSWebsite(item);
 
-    const data = [
-      [
-        "Red Apple Cheese Naturally Good Kosher Not Smoked Provolone Cheese, 8 oz",
-        "Open Product Description",
-        "$6.99",
-        "$0.87/oz",
-        "https://assets.wakefern.com/is/image/wakefern/60426202188-001?$Mi9Product_cell$"
-      ],
-      [
-        "Red Apple Cheese Naturally Good Kosher Muenster Cheese, 8 oz",
-        "Open Product Description",
-        "$6.99",
-        "$0.87/oz",
-        "https://storage.googleapis.com/images-prs-prd-c7e7986.prs.prd.v8.commerce.mi9cloud.com/srs/img/missing-Image-Square.svg"
-      ],
-      [
-        "Kraft Mexican Style Four Cheese, 8 oz",
-        "Open Product Description",
-        "$3.59",
-        "$0.45/oz",
-        "https://assets.wakefern.com/is/image/wakefern/2100005496-001?$Mi9Product_cell$"
-      ]
-    ];
+    // const data = [
+    //   [
+    //     "Red Apple Cheese Naturally Good Kosher Not Smoked Provolone Cheese, 8 oz",
+    //     "Open Product Description",
+    //     "$6.99",
+    //     "$0.87/oz",
+    //     "https://assets.wakefern.com/is/image/wakefern/60426202188-001?$Mi9Product_cell$"
+    //   ],
+    //   [
+    //     "Red Apple Cheese Naturally Good Kosher Muenster Cheese, 8 oz",
+    //     "Open Product Description",
+    //     "$6.99",
+    //     "$0.87/oz",
+    //     "https://storage.googleapis.com/images-prs-prd-c7e7986.prs.prd.v8.commerce.mi9cloud.com/srs/img/missing-Image-Square.svg"
+    //   ],
+    //   [
+    //     "Kraft Mexican Style Four Cheese, 8 oz",
+    //     "Open Product Description",
+    //     "$3.59",
+    //     "$0.45/oz",
+    //     "https://assets.wakefern.com/is/image/wakefern/2100005496-001?$Mi9Product_cell$"
+    //   ]
+    // ];
 
     // stores the data
-    // const storageSubfolder = 'storage'; 
-    // const targetSubfolder = 'cvs';
-    // const fileName = path.join(parsed.dir, storageSubfolder, targetSubfolder, `${items[0]}.json`);
+    const storageSubfolder = 'storage'; 
+    const targetSubfolder = 'cvs';
+    const fileName = path.join(parsed.dir, storageSubfolder, targetSubfolder, `${item}.json`);
 
-    // // Check if the file exists
-    // if (fs.existsSync(fileName)) {
-    //   // Load the existing data from the file
-    //   const existingData = JSON.parse(fs.readFileSync(fileName));
+    // Check if the file exists
+    if (fs.existsSync(fileName)) {
+      // Load the existing data from the file
+      const existingData = JSON.parse(fs.readFileSync(fileName));
 
-    //   // Merge and deduplicate the data (based on a unique identifier)
-    //   const newData = deduplicateData(existingData, data);
+      // Merge and deduplicate the data (based on a unique identifier)
+      const newData = deduplicateData(existingData, data);
 
-    //   // Save the merged data back to the file
-    //   fs.writeFileSync(fileName, JSON.stringify(newData, null, 2));
-    // } else {
-    //   // If the file doesn't exist, create it with the scraped data
-    //   fs.writeFileSync(fileName, JSON.stringify(data, null, 2));
-    // }
+      // Save the merged data back to the file
+      fs.writeFileSync(fileName, JSON.stringify(newData, null, 2));
+    } else {
+      // If the file doesn't exist, create it with the scraped data
+      fs.writeFileSync(fileName, JSON.stringify(data, null, 2));
+    }
 
     res.json(data);
 

@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/header.css"
 
 const ZipCode = ({ zipCode, setZipCode, handleSubmit }) => {
 
@@ -10,15 +11,16 @@ const ZipCode = ({ zipCode, setZipCode, handleSubmit }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleZipSubmit}>
-        <input
+
+    <div className="middle">
+      <form className="search-form" onSubmit={handleZipSubmit}>
+      <input
           value={zipCode}
           onChange={e => setZipCode(e.target.value)}
           placeholder="Enter Zip Code"
-          className="custom-input"
+          className="search-bar"
         />
-        <button type="submit" className="custom-button">Submit</button>
+        <button type="submit" className="search-button">Search</button>
       </form>
     </div>
   );
