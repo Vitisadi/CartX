@@ -168,7 +168,6 @@ router.put(`/${parsed.name}`, async (req, res) => {
       // If the file doesn't exist, create it with the scraped data
       fs.writeFileSync(fileName, JSON.stringify(data, null, 2));
     }
-
     res.json(data);
 
   } catch (error) {

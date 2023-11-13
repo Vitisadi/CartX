@@ -4,11 +4,13 @@ import TargetCard from "../Cards/TargetCard";
 import CvsCard from "../Cards/CvsCard";
 import Header from "../components/Header";
 import { useData } from '../Pages/DataHolder';
+import { useStoreData } from "./StoresHolder";
 
 function App() {
   const [zipCode, setZipCode] = useState('');
   const [item, setItem] = useState('');
   const { data, handleSetData } = useData(); // Using the useData hook
+  const {setStoreData} = useStoreData();
 
   // adds to cart
   const addToCart = (product, store) => {
@@ -54,13 +56,37 @@ function App() {
       .catch(error => {
         console.error("There was a problem with the fetch operation:", error);
       });
+
+      // gets the nearby stores
+      fetch("http://localhost:8080/test", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          item: item,
+          userAddress: zipCode
+        }), 
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Failed to gather data");
+        }
+      })
+      .then(stores_data => {
+        console.log("NearBy Stores: ", stores_data);
+        setStoreData(stores_data);
+      })
+      .catch(error => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
   };
 
   return (
       <div>
         <Header item={item} setItem={setItem} zipCode={zipCode} setZipCode={setZipCode} handleSubmit={handleSubmit}/>
-
-        {/* loop through the recieved data and print the cards */}
 
         { data && Object.keys(data).map((store) => (
         <div key={store} className="products-container">

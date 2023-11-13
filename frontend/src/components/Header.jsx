@@ -8,7 +8,7 @@ import Menu from './Menu';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import ZipCode from './ZipCode';
 
-const Header = ({item,setItem, zipCode, setZipCode, handleSubmit}) => {
+const Header = ({item,setItem, zipCode, setZipCode, handleSubmit, storesData}) => {
     const navigate = useNavigate(); // Create an instance of useNavigate
 
     const handleLogoClick = () => {
@@ -28,10 +28,10 @@ const Header = ({item,setItem, zipCode, setZipCode, handleSubmit}) => {
             </div>
 
             <SearchBar item={item} setItem={setItem}/>
-            <ZipCode zipCode={zipCode} setZipCode={setZipCode} handleSubmit={handleSubmit} />
+            <ZipCode zipCode={zipCode} setZipCode={setZipCode} handleSubmit={handleSubmit}/>
         
             <div className="right">
-                <Address />
+                <Address data={storesData} />
                 <Cart />
             </div>
         </header>

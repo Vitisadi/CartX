@@ -14,7 +14,7 @@ router.put(`/${parsed.name}`, async (req, res) => {
   // let storeArray = [];
   // const startTime = new Date();
   // async function fetchCoordinates(googleKey, address){
-  //   //This code is to convert the zip code to latitute and longitude coordinates
+  //   // This code is to convert the zip code to latitute and longitude coordinates
   //   //**********may implement using address as another option
   //   let response;
   //   try {
