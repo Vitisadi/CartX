@@ -17,7 +17,7 @@
 
  .left{
   /* background-color: lightblue; */
-  width: 200px;
+  width: 20%;
   display:flex;
   align-items:center;
  }
@@ -51,6 +51,7 @@
  
 .middle{
   /* background-color:pink; */
+  width: 60%;
    max-width:600px;
    min-width: 250px;
    flex:1;
@@ -115,7 +116,7 @@
 
  .right{
    /* background-color:lightblue; */
-   width:200px;
+   width:20%;
    min-width:100px; 
    max-width:500px;
    display:flex;

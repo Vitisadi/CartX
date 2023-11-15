@@ -22,7 +22,7 @@ const SearchBar = ( {item,setItem} ) => {
                     value={currentItem}
                     onChange={e => setCurrentItem(e.target.value)}
                 />
-                <button type="submit" className="search-button">Search</button>
+                {/* <button type="submit" className="search-button">Search</button> */}
             </form>
         </div>
     )
