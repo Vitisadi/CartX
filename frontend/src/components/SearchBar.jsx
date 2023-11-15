@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SlMagnifier } from "react-icons/sl";
+import { SlMagnifier, SlMenu } from "react-icons/sl"
 import "../styles/header.css"
 
 const SearchBar = ( {item,setItem} ) => {

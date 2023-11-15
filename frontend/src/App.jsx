@@ -5,7 +5,6 @@ import Compare from './Pages/Compare';
 import Database from './Pages/Database';
 import Error from './Pages/Error';
 import CartPage from './Pages/CartPage';
-import StoresPage from './Pages/StoresPage';
 
 function App() {
     return (
@@ -15,7 +14,6 @@ function App() {
                 <Route path="/compare" element={<Compare />} />
                 <Route path="/database" element={<Database />} />
                 <Route path="/cart" element={<CartPage />} />
-                <Route path="/stores" element={<StoresPage />} />
                 <Route path="*" element={<Error />} />
             </Routes>
         </BrowserRouter>

@@ -9,7 +9,7 @@
   top:0;
   left:0;
   right:0;
-  justify-content: space-between;
+  justify-content: flex-start;
   z-index: 100;
 
   border-bottom: 1px solid rgb(228, 228, 228);
@@ -46,8 +46,7 @@
 
  .header-logo {
   height:60px;
-
-  margin-right:auto;
+  
 }
  
 .middle{
@@ -58,8 +57,8 @@
    display: flex;
    align-items: center; /* Center the content vertically */
 
-   margin-left: 35px;
-   margin-right: 18px;
+   margin-left: 80px;
+   margin-right: 120px;
 
 }
 
@@ -68,6 +67,7 @@
   display: flex;
   padding-left: 10px;
   font-size: 16px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   height:40px;
   width:100%;
   box-shadow: 
@@ -77,6 +77,8 @@
   border-radius:30px;
   overflow: hidden;
   margin: 6px;
+
+  transition: border-color 0.3s ease;
 }
 
 .magnifying-glass {
@@ -92,9 +94,6 @@
   width:100%;
 }
 
-.search-bar::placeholder{
-  font-size:16px;
-}
 
 
 .search-form:focus-within{
@@ -121,8 +120,9 @@
    max-width:500px;
    display:flex;
    align-items:center;
+   position:relative;
 
-    flex-shrink:1;
+   flex-shrink:1;
   }
 
 
@@ -130,7 +130,6 @@
   .input-address,
   .view-cart{
     display:flex;
-    justify-content: center;
     align-items: center;
     height:40px;
     width:40px;
@@ -138,7 +137,7 @@
     margin-right:20px;
     border-radius:50%;
     border:none;
-
+    
     background-color: white;
   }
 
@@ -147,10 +146,6 @@
     background-color: rgb(234, 234, 234)
   }
  
- 
-
- 
-
 
 
  
