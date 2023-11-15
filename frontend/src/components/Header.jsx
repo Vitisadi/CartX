@@ -4,7 +4,9 @@ import { SlMagnifier, SlMenu } from "react-icons/sl";
 import {TiShoppingCart, TiLocation} from "react-icons/ti";
 import "../styles/header.css"
 
-const Header = () => {
+
+const Header = (props) => {
+   
     return (
         <header className="site-header">
             <div className="left">
@@ -20,8 +22,10 @@ const Header = () => {
                 </form>
 
             </div>
+
+
             <div className="right"> 
-                <button className="input-address">
+                <button className="input-address" onClick={()=>props.setTrigger(true)}>
                     <TiLocation size={30} />
                 </button>
                 <button className="view-cart">
@@ -29,7 +33,9 @@ const Header = () => {
                 </button>
             </div>
         </header>
-    );
+        
+    )
+    
 }
  
 export default Header;

@@ -6,10 +6,15 @@ import ItemList from './components/ItemList';
 import ShopRiteDisplay from "./pages/ShopRiteDisplay";
 import TargetCardDisplay from "./pages/TargetDisplay";
 
+import AddressPopup from "./components/AddressPopup";
+
+import './styles/index.css'; 
+
 function App() {
   const [zipCode, setZipCode] = useState('');
   const [items, setItems] = useState([]);
   const [data, setData] = useState(null);
+  const [addressButton, setAddressButton] = useState(false);
 
   const handleSubmit = () => {  
       // First API call to nearbyStores
@@ -46,13 +51,16 @@ function App() {
   return (
 
       <div>
-        <Header />
+        <Header trigger={addressButton} setTrigger={setAddressButton}/>
         <br></br>
         <ItemList items={items} setItems={setItems} />
         <ZipCode zipCode={zipCode} setZipCode={setZipCode} handleSubmit={handleSubmit} />        
 
         {shopriteData &&  <ShopRiteDisplay shopriteData={shopriteData} />}
         {targetData && <TargetCardDisplay targetData={targetData} />}
+
+        {/* address popup */}
+        <AddressPopup trigger={addressButton} setTrigger={setAddressButton}/>
       
       {/* 
         {data && (
