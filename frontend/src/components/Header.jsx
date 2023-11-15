@@ -1,32 +1,38 @@
 import React from 'react';
 import logo from '../assets/cartx.png';
-import { SlMagnifier, SlMenu } from "react-icons/sl";
-import {TiShoppingCart, TiLocation} from "react-icons/ti";
 import "../styles/header.css"
+import SearchBar from './SearchBar';
+import Cart from './Cart';
+import Address from './Address';
+import Menu from './Menu';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import ZipCode from './ZipCode';
 
-const Header = () => {
+const Header = ({item,setItem, zipCode, setZipCode, handleSubmit, storesData}) => {
+    const navigate = useNavigate(); // Create an instance of useNavigate
+
+    const handleLogoClick = () => {
+        navigate('/'); // Navigate to /home when the logo is clicked
+    };
+
     return (
         <header className="site-header">
             <div className="left">
-                <button className="hamburger-button">
-                    <SlMenu />
-                </button>
-                <img src={logo} alt="Logo" className="header-logo" />             
+                <Menu />
+                <img 
+                    src={logo} 
+                    alt="Logo" 
+                    className="header-logo" 
+                    onClick={handleLogoClick} // Add onClick event here
+                />             
             </div>
-            <div className="middle">
-                <form className="search-form">
-                    <span className="magnifying-glass"><SlMagnifier /></span>
-                    <input type="text" placeholder="Search..." className="search-bar" />
-                </form>
 
-            </div>
-            <div className="right"> 
-                <button className="input-address">
-                    <TiLocation size={30} />
-                </button>
-                <button className="view-cart">
-                    <TiShoppingCart size={30}/>
-                </button>
+            <SearchBar item={item} setItem={setItem}/>
+            <ZipCode zipCode={zipCode} setZipCode={setZipCode} handleSubmit={handleSubmit}/>
+        
+            <div className="right">
+                <Address data={storesData} />
+                <Cart />
             </div>
         </header>
     );

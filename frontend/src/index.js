@@ -1,10 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import App from './App';
+import { DataProvider } from './Pages/DataHolder';
+import { StoreDataProvider } from './Pages/StoresHolder'; // Adjust the path as necessary
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const container = document.getElementById('root');
+const root = createRoot(container);
+
 root.render(
   <React.StrictMode>
-    <App />
+    <DataProvider>
+      <StoreDataProvider>
+        <App />
+      </StoreDataProvider>
+    </DataProvider>
   </React.StrictMode>
 );

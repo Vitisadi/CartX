@@ -118,10 +118,12 @@ async function scrapeShopRiteWebsite(item_name) {
 
 router.put(`/${parsed.name}`, async (req, res) => {
   try {
-    const items = req.body.items;
+    const item = req.body.item;
     const address = req.body.address;
 
-    const data = await scrapeShopRiteWebsite(items[0]);
+    // console.log("Item: ", item);
+
+    const data = await scrapeShopRiteWebsite(item);
 
     // const data = [
     //   [
@@ -150,7 +152,7 @@ router.put(`/${parsed.name}`, async (req, res) => {
     // stores the data
     const storageSubfolder = 'storage'; 
     const targetSubfolder = 'shoprite';
-    const fileName = path.join(parsed.dir, storageSubfolder, targetSubfolder, `${items[0]}.json`);
+    const fileName = path.join(parsed.dir, storageSubfolder, targetSubfolder, `${item}.json`);
 
     // Check if the file exists
     if (fs.existsSync(fileName)) {
@@ -166,7 +168,6 @@ router.put(`/${parsed.name}`, async (req, res) => {
       // If the file doesn't exist, create it with the scraped data
       fs.writeFileSync(fileName, JSON.stringify(data, null, 2));
     }
-
     res.json(data);
 
   } catch (error) {

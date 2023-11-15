@@ -128,10 +128,10 @@ async function scrapeCVSWebsite(item_name) {
 
 router.put(`/${parsed.name}`, async (req, res) => {
   try {
-    const items = req.body.items;
+    const item = req.body.item;
     const address = req.body.address;
 
-    const data = await scrapeCVSWebsite(items[0]);
+    const data = await scrapeCVSWebsite(item);
 
     // const data = [
     //   [
@@ -160,7 +160,7 @@ router.put(`/${parsed.name}`, async (req, res) => {
     // stores the data
     const storageSubfolder = 'storage'; 
     const targetSubfolder = 'cvs';
-    const fileName = path.join(parsed.dir, storageSubfolder, targetSubfolder, `${items[0]}.json`);
+    const fileName = path.join(parsed.dir, storageSubfolder, targetSubfolder, `${item}.json`);
 
     // Check if the file exists
     if (fs.existsSync(fileName)) {
