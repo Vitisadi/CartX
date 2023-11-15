@@ -9,7 +9,7 @@
   top:0;
   left:0;
   right:0;
-  justify-content: flex-start;
+  justify-content: space-between;
   z-index: 100;
 
   border-bottom: 1px solid rgb(228, 228, 228);
