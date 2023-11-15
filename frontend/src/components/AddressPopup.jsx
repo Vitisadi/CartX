@@ -60,27 +60,12 @@ function AddressPopup(props) {
                 </div>
 
                 <div className="search-container">
-                    {/* <PlacesAutocomplete
-                        value={searchText}
-                        onChange={handleInputChange}
-                        onSelect={handleSelect}
-                    >
-                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                        <div>
-                            <input ref={inputRef} 
+                    <input ref={inputRef} 
                            type="text" 
                            placeholder="Search..." 
                            className="address-search"
                            value={searchText}
-                           onChange={handleInputChange}/>   
-                        </div>
-                        
-                    
-                    
-                    
-                    )}
-                    
-                    </PlacesAutocomplete> */}
+                           onChange={handleInputChange}/>  
 
                     <button onClick={buttonClick} className="search-button">
                         {searchText ? <TiTimes size ={20}/> : <SlMagnifier/>}
