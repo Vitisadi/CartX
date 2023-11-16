@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../styles/index.css'; // Import your CSS file
 import logo from './logos/shoprite.png';
+import './card.css';
 
-const ShopRiteCard = ({ product , addToCart}) => {
+const ShopRiteCard = ({ product , addToCart, isInCartPage}) => {
 
   let imageIndex = null;
   let priceIndex = null;
@@ -22,26 +23,41 @@ const ShopRiteCard = ({ product , addToCart}) => {
     }
   }
 
+
+
+  const [isAdded, setIsAdded] = useState(false); // State to track if added to cart
+
+  const handleAddToCart = () => {
+    addToCart(product);
+    setIsAdded(true); // Update state to indicate product is added
+  };
+
   // If an index with an image link is found, use it as the source
   const imageSource = imageIndex !== null ? product[imageIndex] : '';
 
   return (
-    <div className="product-card">
-      <div className="logo">
-        <img src={logo} alt="Store Logo" />
-      </div>
-      <div className="product-image">
-        <img src={imageSource} alt="Product" />
-      </div>
-      <div className="product-info">
-        <h3 className="product-name">{product[0]}</h3>
-        <p className="price">{product[priceIndex]}</p>
-        {/* <p className="size">{product[3]}</p> */}
-      </div>
-      <div className="add-to-cart">
-      <button onClick={() => addToCart(product)}>Add to Cart</button>
-      </div>
+    <div className="card">
+    <div className="store-logo">
+        <img className="store-logo-img" src={logo} alt="Store Logo" />
     </div>
+    <div>
+        <img className="product-img" src={imageSource} alt="Product" />
+    </div>
+    <div className="product-details">
+        <h3 className="product-name">{product[0]}</h3>
+        <p className="product-price">{product[priceIndex]}</p>
+    </div>
+
+    <button
+                className={`addToCart ${isAdded || isInCartPage ? 'added' : ''}`}
+                onClick={handleAddToCart}
+                aria-label={isAdded || isInCartPage ? "Added to cart" : "Add to cart"}
+            >
+                {isAdded || isInCartPage ? '✓' : '+'}
+            </button>
+    
+    </div>
+
   );
 };
 

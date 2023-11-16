@@ -130,7 +130,6 @@ async function scrapeTargetWebsite(item_name) {
 router.put(`/${parsed.name}`, async (req, res) => {
   try {
     const item = req.body.item;
-    const address = req.body.address;
 
     const data = await scrapeTargetWebsite(item);
 

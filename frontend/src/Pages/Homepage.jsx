@@ -8,7 +8,6 @@ import AddressPopup from "../components/AddressPopup";
 import '../styles/index.css'; 
 
 function App() {
-  const [zipCode, setZipCode] = useState('');
   const [item, setItem] = useState('');
   const { data, handleSetData } = useData(); // Using the useData hook
   const [addressButton, setAddressButton] = useState(false);
@@ -16,7 +15,7 @@ function App() {
   // adds to cart
   const addToCart = (product, store) => {
     setCart(currentCart => [...currentCart, { ...product, store }]);
-  };  
+  };
 
   // local storage for cart
   const [cart, setCart] = useState(() => {
@@ -30,8 +29,8 @@ function App() {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
-  const handleSubmit = () => {
-
+  function handleSubmit(item){
+      console.log("this is the item: ", item);
       // First API call to nearbyStores
       fetch("http://localhost:8080/getData", {
         method: "PUT",
@@ -40,7 +39,6 @@ function App() {
         },
         body: JSON.stringify({
           item: item,
-          userAddress: zipCode
         }), 
       })
       .then(response => {
@@ -53,31 +51,47 @@ function App() {
       .then(data => {
         console.log("Received data from stores: ", data);
         handleSetData(data);
+        console.log("Data in dataHolder: ", data);
       })
       .catch(error => {
         console.error("There was a problem with the fetch operation:", error);
       });
     }
+
+  const cvsData = data && data['cvs'] ? data['cvs'] : [];
+  const shopRiteData = data && data['shoprite'] ? data['shoprite'] : [];
+  const targetData = data && data['target'] ? data['target'] : [];
   
-
   return (
-      <div>
-        <Header item={item} setItem={setItem} trigger={addressButton} setTrigger={setAddressButton}/>
-        <AddressPopup trigger={addressButton} setTrigger={setAddressButton}/>
-
-        { data && Object.keys(data).map((store) => (
-        <div key={store} className="products-container">
-          {data[store].map((product, index) => (
-            <React.Fragment key={index}>
-              {store === "shoprite" && <ShopRiteCard product={product} addToCart={() => addToCart(product, "shoprite")} />}
-              {store === "target" && <TargetCard product={product} addToCart={() => addToCart(product, "target")} />}
-              {store === "cvs" && <CvsCard product={product} addToCart={() => addToCart(product, "cvs")} />}
-            </React.Fragment>
-          ))}
-        </div>
-      ))
-    }
-      </div> 
+    <div>
+    <Header item={item} setItem={setItem} onSearchClick={handleSubmit} trigger={addressButton} setTrigger={setAddressButton}/>
+    <AddressPopup trigger={addressButton} setTrigger={setAddressButton}/>
+  
+    {shopRiteData && shopRiteData.length > 0 && (
+      <div className="products-container">
+        {shopRiteData.map((product, index) => (
+          <ShopRiteCard key={index} product={product} isInCartPage={false} addToCart={() => addToCart(product, "shoprite")} />
+        ))}
+      </div>
+    )}
+  
+    {targetData && targetData.length > 0 && (
+      <div className="products-container">
+        {targetData.map((product, index) => (
+          <TargetCard key={index} product={product} isInCartPage={false} addToCart={() => addToCart(product, "target")} />
+        ))}
+      </div>
+    )}
+  
+    {cvsData && cvsData.length > 0 && (
+      <div className="products-container">
+        {cvsData.map((product, index) => (
+          <CvsCard key={index} product={product} isInCartPage={false} addToCart={() => addToCart(product, "cvs")} />
+        ))}
+      </div>
+    )}
+  </div>
+  
   );
 }
 export default App;
