@@ -120,10 +120,11 @@
    min-width:100px; 
    max-width:500px;
    display:flex;
+
    align-items:center;
    position:relative;
 
-   flex-shrink:1;
+   flex-shrink:0;
   }
 
 
@@ -141,6 +142,8 @@
     
     background-color: white;
   }
+
+
 
   .input-address:hover,
   .view-cart:hover{

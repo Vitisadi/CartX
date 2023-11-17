@@ -5,7 +5,7 @@ import CvsCard from "../Cards/CvsCard";
 import Header from "../components/Header";
 import { useData } from '../Pages/DataHolder';
 import AddressPopup from "../components/AddressPopup";
-import '../styles/index.css'; 
+import '../styles/index.css';
 
 function App() {
   const [zipCode, setZipCode] = useState('');

@@ -9,10 +9,11 @@
     "axios": "^1.5.0",
     "http-proxy-middleware": "^2.0.6",
     "react": "^18.2.0",
+    "react-bingmaps": "^3.6.1",
     "react-dom": "^18.2.0",
     "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^6.18.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -40,6 +41,9 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/core": "^7.23.3",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.23.3",
+    "@babel/preset-react": "^7.23.3"
   }
 }
