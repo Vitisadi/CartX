@@ -3,12 +3,11 @@ import logo from '../assets/cartx.png';
 import "../styles/header.css"
 import SearchBar from './SearchBar';
 import Cart from './Cart';
-import Address from './Address';
 import Menu from './Menu';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import ZipCode from './ZipCode';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate;
+import {TiLocation} from "react-icons/ti";
 
-const Header = ({item,setItem, zipCode, setZipCode, handleSubmit, storesData}) => {
+const Header = ({item,setItem, onSearchClick, trigger, setTrigger}) => {
     const navigate = useNavigate(); // Create an instance of useNavigate
 
     const handleLogoClick = () => {
@@ -27,11 +26,12 @@ const Header = ({item,setItem, zipCode, setZipCode, handleSubmit, storesData}) =
                 />             
             </div>
 
-            <SearchBar item={item} setItem={setItem}/>
-            <ZipCode zipCode={zipCode} setZipCode={setZipCode} handleSubmit={handleSubmit}/>
+            <SearchBar item={item} setItem={setItem} getClick={onSearchClick}/>
         
             <div className="right">
-                <Address data={storesData} />
+                <button className="input-address" onClick={()=>setTrigger(true)}>
+                    <TiLocation size={30} />
+                </button>
                 <Cart />
             </div>
         </header>

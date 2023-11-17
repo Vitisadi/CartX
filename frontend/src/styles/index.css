@@ -147,3 +147,7 @@ code {
   font-size: 18px;
   font-weight: bold;
 }
+
+.carousel-container{
+  background-color: gray;
+}
