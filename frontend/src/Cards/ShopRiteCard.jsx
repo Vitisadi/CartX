@@ -23,8 +23,6 @@ const ShopRiteCard = ({ product , addToCart, isInCartPage}) => {
     }
   }
 
-
-
   const [isAdded, setIsAdded] = useState(false); // State to track if added to cart
 
   const handleAddToCart = () => {

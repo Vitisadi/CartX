@@ -2,8 +2,6 @@ import React, { useRef, useEffect, useState } from 'react';
 import "../styles/address.css"
 import {TiTimes} from "react-icons/ti";
 import { SlMagnifier} from "react-icons/sl";
-// import  PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-
 
 function AddressPopup(props) {
     const body = document.querySelector('body');
@@ -21,21 +19,7 @@ function AddressPopup(props) {
 
     const handleInputChange = (event) =>{
         setSearchText(event.target.value);
-    };
-
-
-    // const handleSelect = async (selectedAddress) =>{
-    //     try{
-    //         const results = await geocodeByAddress(selectedAddress);
-    //         const latLng = await getLatLng(results[0]);
-    //         console.log('Selected Address:', selectedAddress);
-    //         console.log('Latitude and Longitude:', latLng);
-    //         // You can use the selected address or coordinates in your application logic.
-    //     } catch (error) {
-    //         console.error('Error selecting address:', error);
-    //     }
-    // };
-        
+    };        
 
     useEffect(() => {
         if (props.trigger){
@@ -71,11 +55,7 @@ function AddressPopup(props) {
                         {searchText ? <TiTimes size ={20}/> : <SlMagnifier/>}
                     </button>
                 </div>
-                
-
             </div>
-            
-
         </div>
     );
 };

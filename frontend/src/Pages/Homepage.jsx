@@ -95,30 +95,3 @@ function App() {
   );
 }
 export default App;
-
-  //     // gets the nearby stores
-  //     fetch("http://localhost:8080/test", {
-  //       method: "PUT",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         item: item,
-  //         userAddress: zipCode
-  //       }), 
-  //     })
-  //     .then(response => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         throw new Error("Failed to gather data");
-  //       }
-  //     })
-  //     .then(stores_data => {
-  //       console.log("NearBy Stores: ", stores_data);
-  //       setStoreData(stores_data);
-  //     })
-  //     .catch(error => {
-  //       console.error("There was a problem with the fetch operation:", error);
-  //     });
-  // };
