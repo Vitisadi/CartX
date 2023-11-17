@@ -63,10 +63,26 @@ code {
 /* card */
 
 .products-container {
+  display: flex;            
+  overflow-x: auto;         
+  gap: 10px;               
+  padding: 10px;            
+  width: 100%;              
+  box-sizing: border-box; 
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */  
+}
+
+/* For Chrome, Safari, and Opera */
+.products-container::-webkit-scrollbar {
+  display: none; 
+}
+
+/* .products-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; /* Space between cards */
-}
+  gap: 20px; /* Space between cards 
+} */
 
 .product-card {
   border: 1px solid #ddd;
@@ -150,21 +166,4 @@ code {
 
 .carousel-container{
   background-color: gray;
-}
-
-/* To remove scroll bar we need to add support for different browsers*/
-.horizontal-scroll-container {
-  display: flex;            
-  overflow-x: auto;         
-  gap: 10px;               
-  padding: 10px;            
-  width: 100%;              
-  box-sizing: border-box; 
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none; /* For Internet Explorer and Edge */  
-}
-
-/* For Chrome, Safari, and Opera */
-.horizontal-scroll-container::-webkit-scrollbar {
-  display: none; 
 }

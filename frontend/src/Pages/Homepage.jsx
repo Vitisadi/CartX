@@ -68,7 +68,7 @@ function App() {
     <AddressPopup trigger={addressButton} setTrigger={setAddressButton}/>
 
     {shopRiteData && shopRiteData.length > 0 && (
-      <div className="horizontal-scroll-container">
+      <div className="products-container">
         {shopRiteData.map((product, index) => (
           <ShopRiteCard key={index} product={product} isInCartPage={false} addToCart={() => addToCart(product, "shoprite")} />
         ))}
@@ -76,7 +76,7 @@ function App() {
     )}
 
     {cvsData && cvsData.length > 0 && (
-      <div className="horizontal-scroll-container">
+      <div className="products-container">
         {cvsData.map((product, index) => (
           <CvsCard key={index} product={product} isInCartPage={false} addToCart={() => addToCart(product, "cvs")} />
         ))}
@@ -86,7 +86,7 @@ function App() {
     
   
     {targetData && targetData.length > 0 && (
-      <div className="horizontal-scroll-container">
+      <div className="products-container">
         {targetData.map((product, index) => (
           <TargetCard key={index} product={product} isInCartPage={false} addToCart={() => addToCart(product, "target")} />
         ))}
