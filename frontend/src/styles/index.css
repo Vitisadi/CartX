@@ -152,11 +152,19 @@ code {
   background-color: gray;
 }
 
+/* To remove scroll bar we need to add support for different browsers*/
 .horizontal-scroll-container {
-  display: flex;            /* Aligns items in a row */
-  overflow-x: auto;         /* Enables horizontal scrolling */
-  gap: 10px;                /* Optional: Adds space between items */
-  padding: 10px;            /* Optional: Adds padding around the container */
-  width: 100%;              /* Sets the width of the container */
-  box-sizing: border-box;   /* Includes padding in the width calculation */
+  display: flex;            
+  overflow-x: auto;         
+  gap: 10px;               
+  padding: 10px;            
+  width: 100%;              
+  box-sizing: border-box; 
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */  
+}
+
+/* For Chrome, Safari, and Opera */
+.horizontal-scroll-container::-webkit-scrollbar {
+  display: none; 
 }
