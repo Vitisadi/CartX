@@ -66,7 +66,7 @@ function App() {
     <div>
     <Header item={item} setItem={setItem} onSearchClick={handleSubmit} trigger={addressButton} setTrigger={setAddressButton}/>
     <AddressPopup trigger={addressButton} setTrigger={setAddressButton}/>
-  
+
     {shopRiteData && shopRiteData.length > 0 && (
       <div className="products-container">
         {shopRiteData.map((product, index) => (
@@ -74,6 +74,16 @@ function App() {
         ))}
       </div>
     )}
+
+    {cvsData && cvsData.length > 0 && (
+      <div className="products-container">
+        {cvsData.map((product, index) => (
+          <CvsCard key={index} product={product} isInCartPage={false} addToCart={() => addToCart(product, "cvs")} />
+        ))}
+      </div>
+    )} 
+  
+    
   
     {targetData && targetData.length > 0 && (
       <div className="products-container">
@@ -82,14 +92,7 @@ function App() {
         ))}
       </div>
     )}
-  
-    {cvsData && cvsData.length > 0 && (
-      <div className="products-container">
-        {cvsData.map((product, index) => (
-          <CvsCard key={index} product={product} isInCartPage={false} addToCart={() => addToCart(product, "cvs")} />
-        ))}
-      </div>
-    )}
+    
   </div>
   
   );

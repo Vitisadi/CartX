@@ -8,6 +8,7 @@
 }
 
 .card {
+    flex-shrink: 0;
     position: relative; /* Needed for absolute positioning of children */
     height: auto;
     width: 250px;
