@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ShopRiteCard from "../Cards/ShopRiteCard";
-import TargetCard from "../Cards/TargetCard";
-import CvsCard from "../Cards/CvsCard";
+// import TargetCard from "../Cards/TargetCard";
+// import CvsCard from "../Cards/CvsCard";
 import Header from "../components/Header";
 import { useData } from '../Pages/DataHolder';
 import AddressPopup from "../components/AddressPopup";
@@ -58,16 +58,24 @@ function App() {
       });
     }
 
-  const cvsData = data && data['cvs'] ? data['cvs'] : [];
+  // const cvsData = data && data['cvs'] ? data['cvs'] : [];
   const shopRiteData = data && data['shoprite'] ? data['shoprite'] : [];
-  const targetData = data && data['target'] ? data['target'] : [];
+  // const targetData = data && data['target'] ? data['target'] : [];
   
   return (
     <div>
     <Header item={item} setItem={setItem} onSearchClick={handleSubmit} trigger={addressButton} setTrigger={setAddressButton}/>
     <AddressPopup trigger={addressButton} setTrigger={setAddressButton}/>
-  
+
     {shopRiteData && shopRiteData.length > 0 && (
+      <div className="horizontal-scroll-container">
+        {shopRiteData.map((product, index) => (
+          <ShopRiteCard key={index} product={product} isInCartPage={false} addToCart={() => addToCart(product, "shoprite")} />
+        ))}
+      </div>
+    )}
+  
+    {/* {shopRiteData && shopRiteData.length > 0 && (
       <div className="products-container">
         {shopRiteData.map((product, index) => (
           <ShopRiteCard key={index} product={product} isInCartPage={false} addToCart={() => addToCart(product, "shoprite")} />
@@ -89,7 +97,7 @@ function App() {
           <CvsCard key={index} product={product} isInCartPage={false} addToCart={() => addToCart(product, "cvs")} />
         ))}
       </div>
-    )}
+    )} */}
   </div>
   
   );

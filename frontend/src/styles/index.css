@@ -151,3 +151,12 @@ code {
 .carousel-container{
   background-color: gray;
 }
+
+.horizontal-scroll-container {
+  display: flex;            /* Aligns items in a row */
+  overflow-x: auto;         /* Enables horizontal scrolling */
+  gap: 10px;                /* Optional: Adds space between items */
+  padding: 10px;            /* Optional: Adds padding around the container */
+  width: 100%;              /* Sets the width of the container */
+  box-sizing: border-box;   /* Includes padding in the width calculation */
+}
