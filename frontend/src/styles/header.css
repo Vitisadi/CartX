@@ -122,14 +122,11 @@
    display:flex;
    align-items:center;
    position:relative;
-
    flex-shrink:1;
   }
 
-
-
   .input-address,
-  .view-cart{
+  .view-cart, .view-db{
     display:flex;
     align-items: center;
     height:40px;
@@ -138,20 +135,10 @@
     margin-right:20px;
     border-radius:50%;
     border:none;
-    
     background-color: white;
   }
 
   .input-address:hover,
-  .view-cart:hover{
+  .view-cart:hover, .view-db:hover{
     background-color: rgb(234, 234, 234)
-  }
- 
- 
-
- 
-
-
-
- 
- 
+  } 
