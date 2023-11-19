@@ -46,11 +46,13 @@
     display: flex;
 }
 
-.product-list {
+.product-container {
     display: flex;
-}
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust as needed */
+    margin-left: 10px;
+}  
 
-.product-item {
-    margin: 10px;
+.card {
+    flex-grow: 1;
 }
-  
