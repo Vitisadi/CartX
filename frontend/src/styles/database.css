@@ -1,0 +1,58 @@
+/* Adjustments to the Sidebar container */
+.sidebar {
+    width: 75px;
+    height: 100vh;
+    background-color: #b6c8d9;
+}
+
+.sub-heading {
+    margin-top: 25px;
+    margin-left: 20px;
+}
+
+.menu {
+    text-align: center;
+}
+
+.menu-item {
+    background-color: rgb(233, 225, 225);
+    color: black;
+    align-items: center; /* Vertically center items */
+    justify-content: flex-start; /* Align items to the start */
+    text-align: left; /* Align text to the left */
+    padding: 5px;
+}
+
+.arrow {
+    float: right;
+    margin-right: 10px;
+}
+
+.menu-item:hover {
+    background-color: grey;
+    color: rgb(0, 0, 0);
+}
+
+.menu-item.active {
+    background-color: #13395e;
+    color: #b6c8d9;
+}
+
+.database-page {
+    display: flex;
+}
+  
+.content {
+    display: flex;
+}
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust as needed */
+    margin-left: 10px;
+}  
+
+.card {
+    flex-grow: 1;
+}

@@ -6,6 +6,7 @@ import Cart from './Cart';
 import Menu from './Menu';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate;
 import {TiLocation} from "react-icons/ti";
+import Database from './Database';
 
 const Header = ({item,setItem, onSearchClick, trigger, setTrigger}) => {
     const navigate = useNavigate(); // Create an instance of useNavigate
@@ -32,6 +33,7 @@ const Header = ({item,setItem, onSearchClick, trigger, setTrigger}) => {
                 <button className="input-address" onClick={()=>setTrigger(true)}>
                     <TiLocation size={30} />
                 </button>
+                <Database size={30}/>
                 <Cart />
             </div>
         </header>
