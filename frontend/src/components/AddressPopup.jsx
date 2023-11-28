@@ -61,7 +61,6 @@ function AddressPopup(props) {
           inputRef.current.focus();
         }
       };
-
     useEffect(() => {
         if (props.trigger){
             body.style.overflow = 'hidden';

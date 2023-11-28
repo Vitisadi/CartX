@@ -34,7 +34,7 @@ const CartPage = () => {
                     <h2>ShopRite</h2>
                     <div className="products-container">
                         {shopriteCart.map((cartItem, index) => (
-                            <ShopRiteCard key={index} product={cartItem} />
+                            <ShopRiteCard key={index} product={cartItem} isInCartPage={true}/>
                         ))}
                     </div>
                 </div>
@@ -45,7 +45,7 @@ const CartPage = () => {
                     <h2>Target</h2>
                     <div className="products-container">
                         {targetCart.map((cartItem, index) => (
-                            <TargetCard key={index} product={cartItem} />
+                            <TargetCard key={index} product={cartItem} isInCartPage={true}/>
                         ))}
                     </div>
                 </div>
@@ -56,7 +56,7 @@ const CartPage = () => {
                     <h2>CVS</h2>
                     <div className="products-container">
                         {cvsCart.map((cartItem, index) => (
-                            <CvsCard key={index} product={cartItem} />
+                            <CvsCard key={index} product={cartItem} isInCartPage={true} />
                         ))}
                     </div>
                 </div>

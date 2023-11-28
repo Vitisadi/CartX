@@ -7,7 +7,7 @@ import Menu from './Menu';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate;
 import {TiLocation} from "react-icons/ti";
 
-const Header = ({item,setItem, trigger, setTrigger}) => {
+const Header = ({item,setItem, onSearchClick, trigger, setTrigger}) => {
     const navigate = useNavigate(); // Create an instance of useNavigate
 
     const handleLogoClick = () => {
@@ -26,7 +26,7 @@ const Header = ({item,setItem, trigger, setTrigger}) => {
                 />             
             </div>
 
-            <SearchBar item={item} setItem={setItem}/>
+            <SearchBar item={item} setItem={setItem} getClick={onSearchClick}/>
         
             <div className="right">
                 <button className="input-address" onClick={()=>setTrigger(true)}>

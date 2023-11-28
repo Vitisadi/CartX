@@ -130,40 +130,8 @@ async function scrapeTargetWebsite(item_name) {
 router.put(`/${parsed.name}`, async (req, res) => {
   try {
     const item = req.body.item;
-    const address = req.body.address;
 
     const data = await scrapeTargetWebsite(item);
-
-    // const data = [
-    //   [
-    //     "Tillamook Medium White Cheddar Cheese Slices - 8oz",
-    //     "Tillamook",
-    //     "4.7 out of 5 stars with 241 ratings",
-    //     "241",
-    //     "SNAP EBT eligible",
-    //     "$4.29 ($0.54/ounce)",
-    //     "at Latham",
-    //     "Get it as soon as 9am tomorrow with Shipt",
-    //     "Sponsored",
-    //     "Ready tomorrow with pickup",
-    //     "Deliver it",
-    //     "https://target.scene7.com/is/image/Target/GUEST_483b7f0e-9f4b-4c06-8eaa-96dbc76e7f03?qlt=65&fmt=webp&hei=154&wid=154"
-    //   ],
-    //   [
-    //     "Tillamook Medium White Cheddar Cheese Slices - 8oz",
-    //     "Tillamook",
-    //     "4.7 out of 5 stars with 241 ratings",
-    //     "241",
-    //     "SNAP EBT eligible",
-    //     "$4.29 ($0.54/ounce)",
-    //     "at Latham",
-    //     "Get it as soon as 9am tomorrow with Shipt",
-    //     "Sponsored",
-    //     "Ready tomorrow with pickup",
-    //     "Deliver it",
-    //     "https://target.scene7.com/is/image/Target/GUEST_483b7f0e-9f4b-4c06-8eaa-96dbc76e7f03?qlt=65&fmt=webp&hei=154&wid=154"
-    //   ]
-    // ];    
 
     // stores the data
     const storageSubfolder = 'storage'; 
