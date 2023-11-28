@@ -119,35 +119,8 @@ async function scrapeShopRiteWebsite(item_name) {
 router.put(`/${parsed.name}`, async (req, res) => {
   try {
     const item = req.body.item;
-    const address = req.body.address;
-
-    // console.log("Item: ", item);
 
     const data = await scrapeShopRiteWebsite(item);
-
-    // const data = [
-    //   [
-    //     "Red Apple Cheese Naturally Good Kosher Not Smoked Provolone Cheese, 8 oz",
-    //     "Open Product Description",
-    //     "$6.99",
-    //     "$0.87/oz",
-    //     "https://assets.wakefern.com/is/image/wakefern/60426202188-001?$Mi9Product_cell$"
-    //   ],
-    //   [
-    //     "Red Apple Cheese Naturally Good Kosher Muenster Cheese, 8 oz",
-    //     "Open Product Description",
-    //     "$6.99",
-    //     "$0.87/oz",
-    //     "https://storage.googleapis.com/images-prs-prd-c7e7986.prs.prd.v8.commerce.mi9cloud.com/srs/img/missing-Image-Square.svg"
-    //   ],
-    //   [
-    //     "Kraft Mexican Style Four Cheese, 8 oz",
-    //     "Open Product Description",
-    //     "$3.59",
-    //     "$0.45/oz",
-    //     "https://assets.wakefern.com/is/image/wakefern/2100005496-001?$Mi9Product_cell$"
-    //   ]
-    // ];
 
     // stores the data
     const storageSubfolder = 'storage'; 
@@ -168,7 +141,7 @@ router.put(`/${parsed.name}`, async (req, res) => {
       // If the file doesn't exist, create it with the scraped data
       fs.writeFileSync(fileName, JSON.stringify(data, null, 2));
     }
-    res.json(data);
+  res.json(data);
 
   } catch (error) {
     console.error('Error fetching data:', error);
