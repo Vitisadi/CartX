@@ -20,13 +20,24 @@
 
 .address-popup{
     position:fixed;
+    opacity: 0; 
+    transition: opacity 0.5s ease;
+    
+}
+
+.address-popup.show {
+    position:fixed;
     top:50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
+    display:flex;
+    flex-direction: column;
+
 
     width:50%;
     height:75%;
+    min-height: 350px;
     background-color:white;
 
     border-radius:20px;
@@ -36,19 +47,13 @@
     inset 0 1px 2px rgba(0, 0, 0, 0.05);
 
     z-index: 200;
-
-    opacity: 0; 
-    transition: opacity 0.5s ease;
-    
-}
-
-.address-popup.show {
     opacity: 1;
 }
 
 
 .top{
     display:grid;
+    flex:1;
     grid-template-columns: 1fr 8fr 1fr;
     height: 44px;
     align-items: flex-start;
@@ -62,7 +67,7 @@
     justify-content: center;
 
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size:22px;
+    font-size:2vi;
     font-weight:bold;
 
     height:100%
@@ -97,6 +102,7 @@
 
 
 .search-container{
+    flex:1;
     position:relative;
 }
 
@@ -138,11 +144,37 @@
     
 }
 
-/* .address-search:focus{
+.address-search:focus{
     border-color:rgb(179, 179, 179);
     outline:none;
-} */
+} 
+
+.suggestions-container {
+    position: relative;
+    margin-top: 10px; /* Adjust as needed */
+    flex:4;
+  }
+  
+  .suggestions {
+    /* position: absolute; */
+    top: 100%; /* Position suggestions below the input */
+    left: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 1; /* Ensure suggestions appear above other elements */
+  }
+  
+  .suggestion_line {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 
 
-
-
+    box-shadow: 
+    0 0 4px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .suggestion_line:hover {
+    background-color: #f0f0f0; /* Change background on hover */
+  }
