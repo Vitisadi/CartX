@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { DataProvider, useData } from '../Pages/DataHolder';
 import "../styles/address.css"
 import {TiTimes} from "react-icons/ti";
 import { SlMagnifier} from "react-icons/sl";
@@ -8,24 +9,19 @@ function AddressPopup(props) {
     const inputRef = useRef(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [suggestions, setSuggestions] = useState([]);
+    const [enteredAddress, setEnteredAddress] = useState('');
 
     const handleInputChange = async (e) => {
         const query = e.target.value;
         setSearchQuery(query);
 
         if (query.length > 3) {
-        // Make a request to Bing Maps Autosuggest API
-        // Update 'suggestions' state with the retrieved suggestions
-        // You can use fetch or any HTTP library to make the request
-        // Example:
         let response;
         try{
-            response = await fetch(`https://dev.virtualearth.net/REST/v1/Autosuggest?query=${query}&key=Av6hw1fyVQ3SIMZw_e8r_faDqFgStW8rE_d_CtJAQJKqAFsh_6g_LnY7GM38cEx4&maxResults=4&includeEntityTypes=Address`);
+            response = await fetch(`https://dev.virtualearth.net/REST/v1/Autosuggest?query=${query}&key=Av6hw1fyVQ3SIMZw_e8r_faDqFgStW8rE_d_CtJAQJKqAFsh_6g_LnY7GM38cEx4&maxResults=4`);
             if (!response.ok)
-            throw new Error(`Network response was not ok (${response.status})`);
+                throw new Error(`Network response was not ok (${response.status})`);
         
-        else
-            console.log(1);
 
         const suggestion = await response.json();
 
@@ -50,6 +46,12 @@ function AddressPopup(props) {
     setSearchQuery(suggestion); // Populate the input with selected suggestion
     setSuggestions([]); // Clear suggestions
   };
+  
+  const handleAddressSubmit = (e) => {
+    e.preventDefault(); // Prevents the default form submission behavior
+    setEnteredAddress(enteredAddress); // Set the single item (passed down from App.jsx
+    console.log("Submitted address:", enteredAddress); // Logs the current input value
+    };
 
     const buttonClick = () => {
         if (searchQuery) {
@@ -81,20 +83,22 @@ function AddressPopup(props) {
                 
                 <h1 className="header">Choose Address</h1>
                 </div>
-
+                <form onSubmit={handleAddressSubmit}>
                 <div className="search-container">
                     <input ref={inputRef} 
-                           type="text" 
-                           placeholder="Search for an address..." 
-                           className="address-search"
-                           value={searchQuery}
-                           onChange={handleInputChange}/>
+                        type="text" 
+                        placeholder="Search for an address..." 
+                        className="address-search"
+                        value={searchQuery}
+                        onChange={handleInputChange}/>
 
 
                     <button onClick={buttonClick} className="search-button">
                         {searchQuery ? <TiTimes size ={20}/> : <SlMagnifier/>}
                     </button>  
                 </div>
+                </form>
+                
                 
                 <div className="suggestions-container">
                 {searchQuery.length > 3 &&
