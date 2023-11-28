@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { DataProvider, useData } from '../Pages/DataHolder';
+// import { DataProvider, useData } from '../Pages/DataHolder';
 import "../styles/address.css"
 import {TiTimes} from "react-icons/ti";
 import { SlMagnifier} from "react-icons/sl";
