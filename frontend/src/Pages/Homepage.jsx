@@ -7,7 +7,7 @@ import { useData } from '../Pages/DataHolder';
 import AddressPopup from "../components/AddressPopup";
 import '../styles/index.css';
 
-function App({ cart, setCart }) {
+function App({ cart, setCart, address, setAddress }) {
   const [item, setItem] = useState('');
   const { data, handleSetData } = useData(); // Using the useData hook
   const [addressButton, setAddressButton] = useState(false);
@@ -54,11 +54,10 @@ function App({ cart, setCart }) {
   const cvsData = data && data['cvs'] ? data['cvs'] : [];
   const shopRiteData = data && data['shoprite'] ? data['shoprite'] : [];
   const targetData = data && data['target'] ? data['target'] : [];
-  
   return (
     <div>
-    <Header item={item} setItem={setItem} onSearchClick={handleSubmit} trigger={addressButton} setTrigger={setAddressButton}/>
-    <AddressPopup trigger={addressButton} setTrigger={setAddressButton}/>
+    <Header item={item} setItem={setItem} onSearchClick={handleSubmit} trigger={addressButton} setTrigger={setAddressButton} address={address}/>
+    <AddressPopup trigger={addressButton} setTrigger={setAddressButton} address={address} setAddress={setAddress}/>
 
     {shopRiteData && shopRiteData.length > 0 && (
       <div className="products-container">

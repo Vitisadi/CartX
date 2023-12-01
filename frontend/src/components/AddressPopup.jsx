@@ -4,19 +4,19 @@ import "../styles/address.css"
 import {TiTimes} from "react-icons/ti";
 import { SlMagnifier} from "react-icons/sl";
 
-function AddressPopup(props) {
+function AddressPopup({ trigger, setTrigger, children, setAddress }) {
     const body = document.querySelector('body');
     const inputRef = useRef(null);
     const [searchQuery, setSearchQuery] = useState('');
+    const [submitQuery, setSubmitQuery] = useState('');
     const [suggestions, setSuggestions] = useState([]);
-    const [enteredAddress, setEnteredAddress] = useState('');
 
     const handleInputChange = async (e) => {
         const query = e.target.value;
+        setSubmitQuery(query);
         setSearchQuery(query);
 
         const bing_key = process.env.REACT_APP_BING_KEY;
-        console.log(bing_key)
 
         if (query.length > 0) {
         let response;
@@ -46,14 +46,15 @@ function AddressPopup(props) {
   };
 
   const handleSuggestionClick = (suggestion) => {
+    setSubmitQuery(suggestion);
     setSearchQuery(suggestion); // Populate the input with selected suggestion
     setSuggestions([]); // Clear suggestions
   };
   
-  const handleAddressSubmit = (e) => {
-    e.preventDefault(); // Prevents the default form submission behavior
-    setEnteredAddress(enteredAddress); // Set the single item (passed down from App.jsx
-    console.log("Submitted address:", enteredAddress); // Logs the current input value
+    const handleAddressSubmit = (e) => {
+        e.preventDefault(); // Prevents the default form submission behavior
+        setAddress(submitQuery);
+        setSubmitQuery('')
     };
 
     const buttonClick = () => {
@@ -65,7 +66,7 @@ function AddressPopup(props) {
         }
       };
     useEffect(() => {
-        if (props.trigger){
+        if (trigger){
             body.style.overflow = 'hidden';
             inputRef.current.focus();
         }
@@ -74,20 +75,21 @@ function AddressPopup(props) {
         }
     }); 
     return (
-        <div className={`overlay ${props.trigger ? 'show' : ''}`}>
-            <div className={`address-popup ${props.trigger ? 'show' : ''}`}>
+        <div className={`overlay ${trigger ? 'show' : ''}`}>
+            <div className={`address-popup ${trigger ? 'show' : ''}`}>
                 <div className="top">
-                    <button className="close-address" onClick={() => props.setTrigger(false)}>
+                    <button className="close-address" onClick={() => setTrigger(false)}>
                     <TiTimes size={30} color="rgb(101, 101, 101)"/>
                     
                     </button>
-                {props.children}   
+                {children}   
                 
                 <h1 className="header">Choose Address</h1>
                 </div>
                 <form onSubmit={handleAddressSubmit}>
                 <div className="search-container">
-                    <input ref={inputRef} 
+                    <input 
+                        ref={inputRef} 
                         type="text" 
                         placeholder="Search for an address..." 
                         className="address-search"

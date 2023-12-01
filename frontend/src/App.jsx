@@ -10,16 +10,25 @@ function App() {
     const [cart, setCart] = useState(() => {
         const savedCart = localStorage.getItem('cart');
         return savedCart ? JSON.parse(savedCart) : [];
-      });
+    });
+
+    const [address, setAddress] = useState(() => {
+        const savedCart = localStorage.getItem('address');
+        return savedCart ? JSON.parse(savedCart) : [];
+    });
     
-      useEffect(() => {
+    useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
-      }, [cart]);
+    }, [cart]);
+
+    useEffect(() => {
+        localStorage.setItem('address', JSON.stringify(address));
+    }, [address]);
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Homepage cart={cart} setCart={setCart} />} />
+                <Route path="/" element={<Homepage cart={cart} setCart={setCart} address={address} setAddress={setAddress}/>} />
                 <Route path="/compare" element={<Compare />} />
                 <Route path="/database" element={<DatabasePage cart={cart} setCart={setCart} />} />
                 <Route path="/cart" element={<CartPage />} />
