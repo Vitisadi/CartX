@@ -7,8 +7,11 @@ import ShopRiteCard from "../Cards/ShopRiteCard";
 import TargetCard from "../Cards/TargetCard";
 import CvsCard from "../Cards/CvsCard";
 
-function ProductList({ products, storeName }) {
-
+function ProductList({ products, storeName, cart, setCart }) {
+  const addToCart = (product, store) => {
+    setCart(currentCart => [...currentCart, { ...product, store }]);
+  };
+  
   return (
     <div>
       {products[storeName] && (
@@ -19,9 +22,9 @@ function ProductList({ products, storeName }) {
               <div className='product-container'>
               {products[storeName][category].map((item, index) => (
                 <div key={index}>
-                  {storeName === 'target' && <TargetCard product={item} />}
-                  {storeName === 'shoprite' && <ShopRiteCard product={item} />}
-                  {storeName === 'cvs' && <CvsCard product={item} />}
+                  {storeName === 'target' && <TargetCard product={item} isInCartPage={false} addToCart={() => addToCart(item, "target")} />} 
+                  {storeName === 'shoprite' && <ShopRiteCard product={item} isInCartPage={false} addToCart={() => addToCart(item, "shoprite")} />}
+                  {storeName === 'cvs' && <CvsCard product={item} isInCartPage={false} addToCart={() => addToCart(item, "cvs")} />}
                 </div>
               ))}
               </div>
@@ -64,7 +67,7 @@ function Side({ onMenuItemClick }){
     );
 }
 
-function DatabasePage() {
+function DatabasePage({ cart, setCart }) {
 
   const [products, setProducts] = useState([]);
   const [currentStore, setCurrentStore] = useState(''); // New state for the store name
@@ -95,10 +98,10 @@ function DatabasePage() {
     })
   }
 
- const handleMenuItemClick = async (storeName) => {
+  const handleMenuItemClick = async (storeName) => {
     setCurrentStore(storeName); // Set the current store's name
     fetchStoreData(storeName);
-};
+  };
 
   return (
     <div className="database-page">
@@ -107,7 +110,7 @@ function DatabasePage() {
         <Side onMenuItemClick={handleMenuItemClick} />
 
         <div className='products'>
-        {<ProductList products={products} storeName={currentStore} />}
+        {<ProductList products={products} storeName={currentStore} cart={cart} setCart={setCart} />}
         </div>
 
       </div>
