@@ -15,10 +15,13 @@ function AddressPopup(props) {
         const query = e.target.value;
         setSearchQuery(query);
 
-        if (query.length > 3) {
+        const bing_key = process.env.REACT_APP_BING_KEY;
+        console.log(bing_key)
+
+        if (query.length > 0) {
         let response;
         try{
-            response = await fetch(`https://dev.virtualearth.net/REST/v1/Autosuggest?query=${query}&key=Av6hw1fyVQ3SIMZw_e8r_faDqFgStW8rE_d_CtJAQJKqAFsh_6g_LnY7GM38cEx4&maxResults=4`);
+            response = await fetch(`https://dev.virtualearth.net/REST/v1/Autosuggest?query=${query}&key=${bing_key}&maxResults=4`);
             if (!response.ok)
                 throw new Error(`Network response was not ok (${response.status})`);
         
