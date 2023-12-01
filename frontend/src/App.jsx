@@ -13,8 +13,8 @@ function App() {
     });
 
     const [address, setAddress] = useState(() => {
-        const savedCart = localStorage.getItem('address');
-        return savedCart ? JSON.parse(savedCart) : [];
+        const savedAddress = localStorage.getItem('address');
+        return savedAddress ? JSON.parse(savedAddress) : [];
     });
     
     useEffect(() => {

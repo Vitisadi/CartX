@@ -10,7 +10,15 @@ import Database from './Database';
 
 const Header = ({item,setItem, onSearchClick, trigger, setTrigger, address}) => {
     const navigate = useNavigate(); // Create an instance of useNavigate
+    
+    let split_address = address.split(' ');
 
+    let zipcode = split_address[split_address.length - 1];
+
+    if (isNaN(zipcode)){
+        split_address = address.split(',');
+        zipcode = split_address[split_address.length - 1];
+    }
     const handleLogoClick = () => {
         navigate('/'); // Navigate to /home when the logo is clicked
     };
@@ -30,9 +38,15 @@ const Header = ({item,setItem, onSearchClick, trigger, setTrigger, address}) => 
             <SearchBar item={item} setItem={setItem} getClick={onSearchClick}/>
         
             <div className="right">
-                <button className="input-address" onClick={()=>setTrigger(true)}>
-                    <TiLocation size={30} />
-                </button>
+                <div className="address-container">
+                    <div className="address-text">
+                        {zipcode}
+                    </div>
+                    <button className="input-address" onClick={()=>setTrigger(true)}>
+                        <TiLocation size={30} />
+                    </button>
+                </div>
+                
                 <Database size={30}/>
                 <Cart />
             </div>
