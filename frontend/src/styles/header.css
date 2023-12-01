@@ -128,7 +128,6 @@
 
   .input-address,
   .view-cart, .view-db{
-    display:flex;
     align-items: center;
     height:40px;
     width:40px;

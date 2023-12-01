@@ -16,7 +16,6 @@ function AddressPopup(props) {
         setSearchQuery(query);
 
         const bing_key = process.env.REACT_APP_BING_KEY;
-        console.log(bing_key)
 
         if (query.length > 0) {
         let response;
