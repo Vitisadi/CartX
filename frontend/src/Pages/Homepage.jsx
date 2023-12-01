@@ -7,7 +7,7 @@ import { useData } from '../Pages/DataHolder';
 import AddressPopup from "../components/AddressPopup";
 import '../styles/index.css';
 
-function App() {
+function App({ cart, setCart }) {
   const [item, setItem] = useState('');
   const { data, handleSetData } = useData(); // Using the useData hook
   const [addressButton, setAddressButton] = useState(false);
@@ -16,13 +16,6 @@ function App() {
   const addToCart = (product, store) => {
     setCart(currentCart => [...currentCart, { ...product, store }]);
   };
-
-  // local storage for cart
-  const [cart, setCart] = useState(() => {
-    // Load cart from local storage or start with an empty array
-    const savedCart = localStorage.getItem('cart');
-    return savedCart ? JSON.parse(savedCart) : [];
-  });
 
   // Save cart to local storage when it changes
   useEffect(() => {
